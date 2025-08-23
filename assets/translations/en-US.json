@@ -1,0 +1,98 @@
+{
+  "home": {
+    "topTitle": "{count} wallpapers found",
+    "searchTip": "Please enter keywords",
+    "setting": "Settings",
+    "sortDate": "Sort by date",
+    "sortSize": "Sort by size",
+    "sortUpdate": "Sort by update",
+    "extractTo": "Extract to",
+    "extractFolderTip": "Please select a folder",
+    "browseFolder": "Browse folder",
+    "extractAll": "Extract all",
+    "extractChecked": "Extract selected",
+    "cancelChecked": "Deselect all",
+    "deleteChecked": "Delete selected",
+    "scene": "Scene",
+    "video": "Video",
+    "web": "Web",
+    "application": "Application",
+    "unknown": "Unknown",
+    "updateDate": "Update date",
+    "createdDate": "Creation date",
+    "extractCurrent": "Extract wallpaper",
+    "extractForProject": "Extract as project",
+    "playVideo": "Play video",
+    "openFileLocation": "Open file location",
+    "deleteCurrent": "Delete wallpaper"
+  },
+  "dialog": {
+    "operationCompleted": "Operation completed",
+    "ProcessingWallpaper": "Processing wallpaper",
+    "ProcessingDelete": "Deleting useless files",
+    "errorTitle": "Error message",
+    "deleteFailedTitle": "Failed to delete file",
+    "extractImageInfo": "Copying image {index}/{count}",
+    "extractVideoInfo": "Copying video {copied} / {total}",
+    "copySuccess": "Copy successful",
+    "openFolderFailed": "Open folder failed",
+    "folderNoExist": "Folder does not exist",
+    "playVideoFailed": "Play video failed",
+    "fileNoExist": "File does not exist",
+    "deleteFailed": "Delete failed:"
+  },
+  "setting": {
+    "title": "Settings",
+    "filter": {
+      "label": "Filter",
+      "showAll": "Show all wallpapers",
+      "hideScene": "Hide scene wallpapers",
+      "hideVideo": "Hide video wallpapers",
+      "hideWeb": "Hide web wallpapers",
+      "hideApplication": "Hide application wallpapers",
+      "hideMature": "Hide mature wallpapers",
+      "hideUnknown": "Hide unknown wallpapers"
+    },
+    "config": {
+      "label": "Config",
+      "onlySaveImage": "Save only image files",
+      "noTexture": "Don't retain texture images",
+      "originalProjectName": "Title as project name",
+      "replaceExistFile": "Replace existing files",
+      "replaceExistFileTip": "Replace if the exported filename exists; otherwise, skip exporting",
+      "toolPath": "Tool path",
+      "toolPathTip": "Please select the path of RePKG.exe",
+      "wallpapersPath": "Library",
+      "wallpapersPathTip": "Please select the path of wallpapers"
+    },
+    "system": {
+      "label": "System",
+      "language": "Language",
+      "theme": "Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "about": {
+      "label": "About",
+      "openSourceLicense": "Open Source License",
+      "repkgVersion": "RePKG Version",
+      "repkgAuthor": "RePKG Author",
+      "repkgUrl": "RePKG Homepage",
+      "weRepkgVersion": "WeRePKG Version",
+      "weRepkgAuthor": "WeRePKG Author",
+      "weRepkgUrl": "WeRePKG Homepage"
+    }
+  },
+  "error": {
+    "extractFailed": "Extraction failed:",
+    "exportVideoFailed": "Video export failed:",
+    "exportImageFailed": "Image export failed:",
+    "createdFolderFailed": "Folder creation failed:",
+    "getWallpaperFailed": "Failed to get wallpaper:"
+  },
+  "close": "Close",
+  "emptyTip": "No data available\nPlease manually select a new wallpaper library folder",
+  "toolNoExist": "Tool does not exist, Please check if the tool path is correct",
+  "loading": "Loading"
+}

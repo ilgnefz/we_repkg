@@ -1,0 +1,98 @@
+{
+  "home": {
+    "topTitle": "共检索到 {count} 个壁纸",
+    "searchTip": "请输入关键词",
+    "setting": "设置",
+    "sortDate": "按日期排序",
+    "sortSize": "按大小排序",
+    "sortUpdate": "按更新排序",
+    "extractTo": "提取至",
+    "extractFolderTip": "请选择一个文件夹",
+    "browseFolder": "浏览文件夹",
+    "extractAll": "提取全部",
+    "extractChecked": "提取选中",
+    "cancelChecked": "取消选中",
+    "deleteChecked": "删除选中",
+    "scene": "场景",
+    "video": "视频",
+    "web": "网页",
+    "application": "程序",
+    "unknown": "未知",
+    "updateDate": "更新日期",
+    "createdDate": "创建日期",
+    "extractCurrent": "提取当前壁纸",
+    "extractForProject": "提取为原项目",
+    "playVideo": "播放视频文件",
+    "openFileLocation": "打开文件位置",
+    "deleteCurrent": "删除当前壁纸"
+  },
+  "dialog": {
+    "operationCompleted": "操作完成",
+    "ProcessingWallpaper": "正在处理壁纸",
+    "ProcessingDelete": "正在删除无用的文件",
+    "errorTitle": "错误信息",
+    "deleteFailedTitle": "删除文件失败",
+    "extractImageInfo": "正在复制第 {index}/{count} 张图片",
+    "extractVideoInfo": "正在复制视频 {copied} / {total}",
+    "copySuccess": "复制成功",
+    "openFolderFailed": "打开文件夹失败",
+    "folderNoExist": "文件夹不存在",
+    "playVideoFailed": "播放视频失败",
+    "fileNoExist": "文件不存在",
+    "deleteFailed": "删除失败:"
+  },
+  "setting": {
+    "title": "设置",
+    "filter": {
+      "label": "过滤",
+      "showAll": "显示所有壁纸",
+      "hideScene": "隐藏场景壁纸",
+      "hideVideo": "隐藏视频壁纸",
+      "hideWeb": "隐藏网页壁纸",
+      "hideApplication": "隐藏程序壁纸",
+      "hideMature": "隐藏成人壁纸",
+      "hideUnknown": "隐藏未知壁纸"
+    },
+    "config": {
+      "label": "配置",
+      "onlySaveImage": "仅保存图片文件",
+      "noTexture": "不保留纹理图片",
+      "originalProjectName": "标题为原项目名",
+      "replaceExistFile": "替换已存在文件",
+      "replaceExistFileTip": "当导出的文件名在目标文件夹存在时直接替换，否则不会导出",
+      "toolPath": "工具路径",
+      "toolPathTip": "请选择 RePKG.exe 的路径",
+      "wallpapersPath": "壁纸路径",
+      "wallpapersPathTip": "请选择壁纸的路径"
+    },
+    "system": {
+      "label": "系统",
+      "language": "语言",
+      "theme": "主题",
+      "light": "浅色主题",
+      "dark": "深色主题",
+      "system": "跟随系统"
+    },
+    "about": {
+      "label": "关于",
+      "openSourceLicense": "开源协议",
+      "repkgVersion": "RePKG 版本",
+      "repkgAuthor": "RePKG 作者",
+      "repkgUrl": "RePKG 主页",
+      "weRepkgVersion": "WeRePKG 版本",
+      "weRepkgAuthor": "WeRePKG 作者",
+      "weRepkgUrl": "WeRePKG 主页"
+    }
+  },
+  "error": {
+    "extractFailed": "提取失败:",
+    "exportVideoFailed": "导出视频失败:",
+    "exportImageFailed": "导出图片失败:",
+    "createdFolderFailed": "创建文件夹失败:",
+    "getWallpaperFailed": "获取壁纸失败:"
+  },
+  "close": "关闭",
+  "emptyTip": "未识别到任何数据\n请手动选择一个新的壁纸库文件夹",
+  "toolNoExist": "未找到工具文件，请检查工具路径是否正确",
+  "loading": "正在加载"
+}

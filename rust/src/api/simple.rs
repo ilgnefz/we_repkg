@@ -8,3 +8,15 @@ pub fn init_app() {
     // Default utilities - feel free to customize
     flutter_rust_bridge::setup_default_user_utils();
 }
+
+#[flutter_rust_bridge::frb]
+pub async fn delete_to_trash(file_path: String) -> Option<String> {
+    trash::delete(&file_path).map_err(|e| e.to_string()).err()
+}
+
+#[flutter_rust_bridge::frb]
+pub async fn delete_all_to_trash(file_paths: Vec<String>) -> Option<String> {
+    trash::delete_all(&file_paths)
+        .map_err(|e| e.to_string())
+        .err()
+}

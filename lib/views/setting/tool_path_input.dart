@@ -1,0 +1,44 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:we_repkg/constants/i10n.dart';
+import 'package:we_repkg/constants/strings.dart';
+import 'package:we_repkg/cores/base.dart';
+import 'package:we_repkg/provider/system.dart';
+import 'package:we_repkg/utils/info.dart';
+import 'package:we_repkg/widgets/folder_input.dart';
+
+class ToolPathInput extends ConsumerWidget {
+  const ToolPathInput({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Row(
+      spacing: 8,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          '${tr(AppI10n.settingConfigToolPath)}:',
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+        FolderInput(
+          height: 32,
+          fontSize: 13,
+          controller: TextEditingController(text: ref.watch(toolPathProvider)),
+          hintText: tr(AppI10n.settingConfigToolPathTip),
+          onPressed: () async => await setToolPath(ref),
+        ),
+        IconButton(
+          onPressed: () {
+            ref.read(toolPathProvider.notifier).update(getToolPath());
+            ref
+                .read(toolVersionProvider.notifier)
+                .update(AppStrings.repkgVersion);
+          },
+          icon: Icon(Icons.refresh_rounded),
+        ),
+        // SizedBox.shrink(),
+      ],
+    );
+  }
+}

@@ -8,3 +8,9 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 String greet({required String name}) =>
     RustLib.instance.api.crateApiSimpleGreet(name: name);
+
+Future<String?> deleteToTrash({required String filePath}) =>
+    RustLib.instance.api.crateApiSimpleDeleteToTrash(filePath: filePath);
+
+Future<String?> deleteAllToTrash({required List<String> filePaths}) =>
+    RustLib.instance.api.crateApiSimpleDeleteAllToTrash(filePaths: filePaths);
