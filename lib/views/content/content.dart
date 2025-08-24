@@ -6,7 +6,6 @@ import 'package:we_repkg/models/wallpaper.dart';
 import 'package:we_repkg/provider/system.dart';
 import 'package:we_repkg/provider/wallpaper.dart';
 import 'package:we_repkg/views/states/empty.dart';
-import 'package:we_repkg/views/states/initial.dart';
 
 import 'image.dart';
 
@@ -31,8 +30,7 @@ class _ContentViewState extends ConsumerState<ContentView> {
   Widget build(BuildContext context) {
     // return InitialView();
     RunState runState = ref.watch(currentStateProvider);
-    if (runState.isInitial) return InitialView();
-    if (runState.isEmpty) return EmptyView();
+    if (!runState.isComplete) return EmptyView(runState: runState);
     final double width = 180;
     List<WallpaperInfo> list = ref.watch(filterWallpaperListProvider);
     return Expanded(

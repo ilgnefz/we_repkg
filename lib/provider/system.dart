@@ -21,6 +21,7 @@ class WallpaperPath extends _$WallpaperPath {
   String? build() => StorageUtil.getString(AppKeys.wallpaperPath);
   void update(String? value) async {
     state = value;
+    if (state == null) return;
     await StorageUtil.setString(AppKeys.wallpaperPath, value!);
   }
 }

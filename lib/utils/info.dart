@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import 'package:path/path.dart' as path;
 import 'package:we_repkg/constants/keys.dart';
+import 'package:we_repkg/constants/strings.dart';
 import 'package:we_repkg/utils/storage.dart';
 
 String getToolPath() {
@@ -86,3 +87,6 @@ bool _imageHasTransparentPixels(img.Image image) {
   }
   return false; // 没有透明像素
 }
+
+String getAcfPath(String filePath) =>
+    path.join(path.dirname(path.dirname(filePath)), AppStrings.acfName);

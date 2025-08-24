@@ -43,13 +43,19 @@ Future<String?> getWallpaperPath() async {
   String emptyPath = '';
   String? wallpaperPath, infoPath;
   List<String> disks = await getWindowsDisks();
-  for (String disk in disks) {
-    String path = '$disk${AppStrings.baseWallpaperPath}';
-    if (await Directory(path).exists()) {
-      emptyPath = path;
-      if (Directory(path).listSync().isNotEmpty) {
-        wallpaperPath = path;
-        infoPath = '$disk${AppStrings.baseAcfPath}';
+  List<String> tempPaths = [];
+  for (int i = 0; i < disks.length; i++) {
+    if (i == 0) {
+      tempPaths.add('${disks[i]}${AppStrings.systemDiskWallpaperPath}');
+    }
+    tempPaths.add('${disks[i]}${AppStrings.baseWallpaperPath}');
+  }
+  for (String tempPath in tempPaths) {
+    if (await Directory(tempPath).exists()) {
+      emptyPath = tempPath;
+      if (Directory(tempPath).listSync().isNotEmpty) {
+        wallpaperPath = tempPath;
+        infoPath = getAcfPath(wallpaperPath);
         break;
       }
     }
@@ -73,7 +79,7 @@ Future<List<WallpaperInfo>> getAllFile(WidgetRef ref) async {
   currentState.update(RunState.initial);
   List<WallpaperInfo> wallpapers = [];
   try {
-    wallpapers = await getAllWallpaper(ref, wallpaperPath!);
+    wallpapers = await getAllWallpaper(ref, wallpaperPath);
     currentState.update(RunState.complete);
   } catch (e) {
     showErrorView([
@@ -99,8 +105,9 @@ Future<List<AcfInfo>> getWallpaperInfo() async {
 
 Future<List<WallpaperInfo>> getAllWallpaper(
   WidgetRef ref,
-  String folderPath,
+  String? folderPath,
 ) async {
+  if (folderPath == null) return [];
   List<WallpaperInfo> wallpapers = [];
   Directory dir = Directory(folderPath);
   final (

@@ -65,6 +65,11 @@ Future<void> setWallpaperPath(WidgetRef ref) async {
     ref.read(selectedWallpaperProvider.notifier).update(null);
     ref.read(wallpaperPathProvider.notifier).update(wallpaperPath);
     await StorageUtil.setString(AppKeys.wallpaperPath, wallpaperPath);
+    String infoPath = path.join(
+      path.dirname(path.dirname(wallpaperPath)),
+      AppStrings.acfName,
+    );
+    await StorageUtil.setString(AppKeys.infoPath, infoPath);
     await refreshWallpaper(ref);
   }
 }
@@ -140,7 +145,9 @@ Future<String?> deleteChecked(WidgetRef ref) async {
 
 Future<void> browserCurrent(WallpaperInfo wallpaper) async {
   String folder = wallpaper.folder;
-  if (!Directory(folder).existsSync()) return showErrorToast('文件夹不存在');
+  if (!Directory(folder).existsSync()) {
+    return showErrorToast(tr(AppI10n.dialogFileNoExist));
+  }
   final fixedPath = 'file:///${folder.replaceAll('\\', '/')}';
   final uri = Uri.parse(fixedPath);
   if (await canLaunchUrl(uri)) {

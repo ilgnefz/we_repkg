@@ -9,6 +9,11 @@ class AppStrings {
   static const String appRepoGitte = "https://gitee.com/ilgnefz/we_repkg";
   static const String baseWallpaperPath =
       r'\SteamLibrary\steamapps\workshop\content\431960';
-  static const String baseAcfPath =
-      r'\SteamLibrary\steamapps\workshop\appworkshop_431960.acf';
+  static const String systemDiskWallpaperPath =
+      r'\Program Files (x86)\Steam\steamapps\workshop\content\431960';
+  static const String acfName = 'appworkshop_431960.acf';
+  // static const String baseAcfPath =
+  //     r'\SteamLibrary\steamapps\workshop\' + acfName;
+  // static const String diskCAcfPath =
+  //     r'C:\Program Files (x86)\Steam\steamapps\workshop\' + acfName;
 }
