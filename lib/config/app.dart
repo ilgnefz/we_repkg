@@ -15,18 +15,18 @@ class AppConfig {
     await EasyLocalization.ensureInitialized();
     await windowManager.ensureInitialized();
 
-    await StorageUtil.clear();
+    // await StorageUtil.clear();
 
     WindowOptions windowOptions = WindowOptions(
-      size: Size(1060, 650),
-      minimumSize: Size(1060, 650),
+      size: Size(1060, 720),
+      minimumSize: Size(1060, 720),
       center: true,
       title: AppStrings.appName,
       backgroundColor: Colors.transparent,
       titleBarStyle: TitleBarStyle.hidden,
     );
     windowManager.waitUntilReadyToShow(windowOptions, () async {
-      await windowManager.maximize();
+      // await windowManager.maximize();
       await windowManager.show();
       await windowManager.focus();
       // await windowManager.setAsFrameless();

@@ -24,7 +24,7 @@ class ShowAll extends _$ShowAll {
       await StorageUtil.setBool(AppKeys.hideVideo, false);
       await StorageUtil.setBool(AppKeys.hideWeb, false);
       await StorageUtil.setBool(AppKeys.hideApp, false);
-      await StorageUtil.setInt(AppKeys.matureState, 2);
+      await StorageUtil.setInt(AppKeys.matureState, 0);
     }
   }
 }
