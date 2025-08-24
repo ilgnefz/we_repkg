@@ -6,7 +6,7 @@ part of 'setting.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$showAllHash() => r'044eff4fb8d7a7edf76e1e38022561c30a99c9d5';
+String _$showAllHash() => r'd267c65182a26d5f69cac918e5b75fc7aef03d42';
 
 /// See also [ShowAll].
 @ProviderFor(ShowAll)
@@ -21,22 +21,6 @@ final showAllProvider = AutoDisposeNotifierProvider<ShowAll, bool>.internal(
 );
 
 typedef _$ShowAll = AutoDisposeNotifier<bool>;
-String _$hideUnknownHash() => r'dc2ed5459af103f4f0db607da90ca42ec755214f';
-
-/// See also [HideUnknown].
-@ProviderFor(HideUnknown)
-final hideUnknownProvider =
-    AutoDisposeNotifierProvider<HideUnknown, bool>.internal(
-      HideUnknown.new,
-      name: r'hideUnknownProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$hideUnknownHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-typedef _$HideUnknown = AutoDisposeNotifier<bool>;
 String _$hideSceneHash() => r'bbfa0e791a5829a7a22b5334a8faccf02e50b61e';
 
 /// See also [HideScene].
@@ -97,21 +81,38 @@ final hideAppProvider = AutoDisposeNotifierProvider<HideApp, bool>.internal(
 );
 
 typedef _$HideApp = AutoDisposeNotifier<bool>;
-String _$hideAdultHash() => r'08dd31b31fba61970ab8d269bcbf4fdf1f894daa';
+String _$hideUnknownHash() => r'dc2ed5459af103f4f0db607da90ca42ec755214f';
 
-/// See also [HideAdult].
-@ProviderFor(HideAdult)
-final hideAdultProvider = AutoDisposeNotifierProvider<HideAdult, bool>.internal(
-  HideAdult.new,
-  name: r'hideAdultProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$hideAdultHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+/// See also [HideUnknown].
+@ProviderFor(HideUnknown)
+final hideUnknownProvider =
+    AutoDisposeNotifierProvider<HideUnknown, bool>.internal(
+      HideUnknown.new,
+      name: r'hideUnknownProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$hideUnknownHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
-typedef _$HideAdult = AutoDisposeNotifier<bool>;
+typedef _$HideUnknown = AutoDisposeNotifier<bool>;
+String _$matureShowStateHash() => r'fb044e357a784b7573cfbddc33e52f07e8dd202f';
+
+/// See also [MatureShowState].
+@ProviderFor(MatureShowState)
+final matureShowStateProvider =
+    AutoDisposeNotifierProvider<MatureShowState, MatureState>.internal(
+      MatureShowState.new,
+      name: r'matureShowStateProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$matureShowStateHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+typedef _$MatureShowState = AutoDisposeNotifier<MatureState>;
 String _$onlySaveImageHash() => r'f6060d1fc9216c6d70877022025d25cc9a6ac7ed';
 
 /// See also [OnlySaveImage].

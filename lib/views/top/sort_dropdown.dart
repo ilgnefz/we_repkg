@@ -22,7 +22,7 @@ class _TopSortState extends ConsumerState<SortDropdown> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 128,
+      width: 132,
       child: DropdownButtonHideUnderline(
         child: DropdownButton(
           focusNode: focusNode,

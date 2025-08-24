@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:we_repkg/constants/i10n.dart';
 import 'package:path/path.dart' as path;
+import 'package:we_repkg/constants/i10n.dart';
 
 String typeText(String type) {
   switch (type) {

@@ -18,27 +18,13 @@ class ShowAll extends _$ShowAll {
       ref.read(hideVideoProvider.notifier).update(false);
       ref.read(hideWebProvider.notifier).update(false);
       ref.read(hideAppProvider.notifier).update(false);
-      ref.read(hideAdultProvider.notifier).update(false);
+      ref.read(matureShowStateProvider.notifier).update(MatureState.show);
       await StorageUtil.setBool(AppKeys.hideUnknown, false);
       await StorageUtil.setBool(AppKeys.hideScene, false);
       await StorageUtil.setBool(AppKeys.hideVideo, false);
       await StorageUtil.setBool(AppKeys.hideWeb, false);
       await StorageUtil.setBool(AppKeys.hideApp, false);
-      await StorageUtil.setBool(AppKeys.hideAdult, false);
-    }
-  }
-}
-
-@riverpod
-class HideUnknown extends _$HideUnknown {
-  @override
-  bool build() => StorageUtil.getBool(AppKeys.hideUnknown);
-  void update(bool value) async {
-    state = value;
-    await StorageUtil.setBool(AppKeys.hideUnknown, value);
-    if (value) {
-      ref.read(showAllProvider.notifier).update(false);
-      await StorageUtil.setBool(AppKeys.showAll, false);
+      await StorageUtil.setInt(AppKeys.matureState, 2);
     }
   }
 }
@@ -56,7 +42,6 @@ class HideScene extends _$HideScene {
     }
   }
 }
-
 
 @riverpod
 class HideVideo extends _$HideVideo {
@@ -101,13 +86,28 @@ class HideApp extends _$HideApp {
 }
 
 @riverpod
-class HideAdult extends _$HideAdult {
+class HideUnknown extends _$HideUnknown {
   @override
-  bool build() => StorageUtil.getBool(AppKeys.hideAdult);
+  bool build() => StorageUtil.getBool(AppKeys.hideUnknown);
   void update(bool value) async {
     state = value;
-    await StorageUtil.setBool(AppKeys.hideAdult, value);
+    await StorageUtil.setBool(AppKeys.hideUnknown, value);
     if (value) {
+      ref.read(showAllProvider.notifier).update(false);
+      await StorageUtil.setBool(AppKeys.showAll, false);
+    }
+  }
+}
+
+@riverpod
+class MatureShowState extends _$MatureShowState {
+  @override
+  MatureState build() =>
+      MatureState.values[StorageUtil.getInt(AppKeys.matureState) ?? 0];
+  void update(MatureState value) async {
+    state = value;
+    await StorageUtil.setInt(AppKeys.matureState, value.index);
+    if (!value.isShow) {
       ref.read(showAllProvider.notifier).update(false);
       await StorageUtil.setBool(AppKeys.showAll, false);
     }

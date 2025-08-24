@@ -26,12 +26,14 @@ class BottomView extends ConsumerWidget {
             '${tr(AppI10n.homeExtractTo)}:',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
-          FolderInput(
-            controller: TextEditingController(
-              text: ref.watch(exportPathProvider),
+          Expanded(
+            child: FolderInput(
+              controller: TextEditingController(
+                text: ref.watch(exportPathProvider),
+              ),
+              hintText: tr(AppI10n.homeExtractFolderTip),
+              onPressed: () => setExportPath(ref),
             ),
-            hintText: tr(AppI10n.homeExtractFolderTip),
-            onPressed: () => setExportPath(ref),
           ),
           CustomBtn(
             onPressed: ref.watch(exportPathProvider) == null

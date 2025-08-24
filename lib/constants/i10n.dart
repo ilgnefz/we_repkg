@@ -51,8 +51,13 @@ class AppI10n {
   static const settingFilterHideVideo = 'setting.filter.hideVideo';
   static const settingFilterHideWeb = 'setting.filter.hideWeb';
   static const settingFilterHideApplication = 'setting.filter.hideApplication';
-  static const settingFilterHideMature = 'setting.filter.hideMature';
   static const settingFilterHideUnknown = 'setting.filter.hideUnknown';
+
+  static const settingFilterHideMature = 'setting.filter.hideMature';
+
+  static const settingFilterOnly = 'setting.filter.only';
+  static const settingFilterShow = 'setting.filter.show';
+  static const settingFilterHide = 'setting.filter.hide';
 
   // 设置-提取相关
   static const settingConfigLabel = 'setting.config.label';

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class CustomInput extends StatelessWidget {
   const CustomInput({
     super.key,
+    this.width,
     this.height,
     required this.controller,
     this.padding,
@@ -16,6 +17,7 @@ class CustomInput extends StatelessWidget {
     this.extraIcon,
   });
 
+  final double? width;
   final double? height;
   final TextEditingController controller;
   final EdgeInsets? padding;
@@ -32,7 +34,7 @@ class CustomInput extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
     return Container(
-      width: double.infinity,
+      width: width,
       height: height ?? 36,
       padding: padding ?? EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:we_repkg/constants/i10n.dart';
 import 'package:we_repkg/cores/base.dart';
-import 'package:we_repkg/cores/wallpaper.dart';
 import 'package:we_repkg/provider/system.dart';
 import 'package:we_repkg/widgets/folder_input.dart';
 
@@ -31,16 +30,14 @@ class EmptyView extends ConsumerWidget {
             SizedBox(
               width: MediaQuery.of(context).size.width * .4,
               child: FolderInput(
+                width: double.infinity,
                 height: 40,
                 fontSize: 14,
                 controller: TextEditingController(
                   text: ref.watch(wallpaperPathProvider),
                 ),
                 hintText: tr(AppI10n.settingConfigWallpapersPathTip),
-                onPressed: () async {
-                  bool notEmpty = await setWallpaperPath(ref);
-                  if (notEmpty) await refreshWallpaper(ref);
-                },
+                onPressed: () => setWallpaperPath(ref),
               ),
             ),
           ],

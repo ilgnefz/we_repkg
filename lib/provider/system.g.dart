@@ -38,7 +38,7 @@ final wallpaperPathProvider =
     );
 
 typedef _$WallpaperPath = AutoDisposeNotifier<String?>;
-String _$toolPathHash() => r'96a2600e1c2ab800b9c40bad862080138354dda9';
+String _$toolPathHash() => r'9fe6c0204e0fa16031d71e4c345333ccd03b0d45';
 
 /// See also [ToolPath].
 @ProviderFor(ToolPath)

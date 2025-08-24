@@ -76,3 +76,22 @@ extension ThemeTypeExtension on ThemeType {
     }
   }
 }
+
+enum MatureState { show, hide, only }
+
+extension MatureStateExtension on MatureState {
+  String get label {
+    switch (this) {
+      case MatureState.only:
+        return tr(AppI10n.settingFilterOnly);
+      case MatureState.show:
+        return tr(AppI10n.settingFilterShow);
+      case MatureState.hide:
+        return tr(AppI10n.settingFilterHide);
+    }
+  }
+
+  bool get isOnly => this == MatureState.only;
+  bool get isShow => this == MatureState.show;
+  bool get isHide => this == MatureState.hide;
+}

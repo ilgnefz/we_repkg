@@ -6,6 +6,7 @@ import 'custom_input.dart';
 class FolderInput extends StatelessWidget {
   const FolderInput({
     super.key,
+    this.width,
     this.height,
     required this.controller,
     this.fontSize,
@@ -13,6 +14,7 @@ class FolderInput extends StatelessWidget {
     required this.onPressed,
   });
 
+  final double? width;
   final double? height;
   final TextEditingController controller;
   final double? fontSize;
@@ -21,22 +23,21 @@ class FolderInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: CustomInput(
-        height: height,
-        controller: controller,
-        padding: EdgeInsets.only(left: 12),
-        fontSize: fontSize,
-        readOnly: true,
-        hintText: hintText,
-        extraIcon: Container(
-          width: 1,
-          height: 20,
-          color: Theme.of(context).dividerColor,
-        ),
-        suffix: IconBtn(icon: Icons.folder_open_rounded, onPressed: onPressed),
-        // onPressed: onPressed,
+    return CustomInput(
+      width: width,
+      height: height,
+      controller: controller,
+      padding: EdgeInsets.only(left: 12),
+      fontSize: fontSize,
+      readOnly: true,
+      hintText: hintText,
+      extraIcon: Container(
+        width: 1,
+        height: 20,
+        color: Theme.of(context).dividerColor,
       ),
+      suffix: IconBtn(icon: Icons.folder_open_rounded, onPressed: onPressed),
+      // onPressed: onPressed,
     );
   }
 }

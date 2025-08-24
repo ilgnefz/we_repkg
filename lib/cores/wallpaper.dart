@@ -64,15 +64,16 @@ Future<String?> getWallpaperPath() async {
 }
 
 Future<List<WallpaperInfo>> getAllFile(WidgetRef ref) async {
-  String? wallpaperPath =
-      ref.watch(wallpaperPathProvider) ?? await getWallpaperPath();
-  if (wallpaperPath == null) return [];
-  ref.read(wallpaperPathProvider.notifier).update(wallpaperPath);
+  String? wallpaperPath = ref.watch(wallpaperPathProvider);
+  if (wallpaperPath == null) {
+    wallpaperPath = await getWallpaperPath();
+    ref.read(wallpaperPathProvider.notifier).update(wallpaperPath);
+  }
   CurrentState currentState = ref.read(currentStateProvider.notifier);
   currentState.update(RunState.initial);
   List<WallpaperInfo> wallpapers = [];
   try {
-    wallpapers = await getAllWallpaper(ref, wallpaperPath);
+    wallpapers = await getAllWallpaper(ref, wallpaperPath!);
     currentState.update(RunState.complete);
   } catch (e) {
     showErrorView([
@@ -164,7 +165,7 @@ Future<List<WallpaperInfo>> getAllWallpaper(
           WallpaperInfo(
             id: id,
             title: title,
-            contentRating: contentRating,
+            contentRating: contentRating.toLowerCase(),
             tags: tags,
             previews: previews,
             type: type.toLowerCase(),
@@ -178,8 +179,10 @@ Future<List<WallpaperInfo>> getAllWallpaper(
       }
     }
   }
-  String earliestDateStr = earliestDate.toString().substring(0, 10);
-  ref.read(earliestTimeProvider.notifier).update(earliestDateStr);
+  if (earliestDate != null) {
+    String earliestDateStr = earliestDate.toString().substring(0, 10);
+    ref.read(earliestTimeProvider.notifier).update(earliestDateStr);
+  }
   return wallpapers;
 }
 

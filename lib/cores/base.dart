@@ -7,14 +7,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart' as path;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:we_repkg/constants/i10n.dart';
+import 'package:we_repkg/constants/keys.dart';
+import 'package:we_repkg/constants/strings.dart';
 import 'package:we_repkg/models/wallpaper.dart';
 import 'package:we_repkg/provider/setting.dart';
 import 'package:we_repkg/provider/system.dart';
 import 'package:we_repkg/provider/wallpaper.dart';
 import 'package:we_repkg/src/rust/api/simple.dart';
 import 'package:we_repkg/utils/info.dart';
+import 'package:we_repkg/utils/storage.dart';
 
 import 'toast.dart';
+import 'wallpaper.dart';
 
 Future<bool> setExportPath(WidgetRef ref) async {
   final String? exportPath = await getDirectoryPath();
@@ -25,15 +29,14 @@ Future<bool> setExportPath(WidgetRef ref) async {
   return false;
 }
 
-Future<bool> setToolPath(WidgetRef ref) async {
+Future<void> setToolPath(WidgetRef ref) async {
   final xType = XTypeGroup(label: 'RePKG', extensions: ['exe']);
   final XFile? file = await openFile(acceptedTypeGroups: [xType]);
   if (file != null) {
     ProcessResult result = await Process.run(file.path, ['version']);
     // print('out:${result.stdout}');
     // print('err:${result.stderr}');
-    // print('pid:${result.pid}');
-    // print('exitCode:${result.exitCode}');
+    // print('pid:${result.pid} -- exitCode:${result.exitCode}');
     if (result.exitCode == 0) {
       String version = '';
       if (result.stdout != '') {
@@ -46,18 +49,32 @@ Future<bool> setToolPath(WidgetRef ref) async {
       debugPrint('版本: $version');
     }
     ref.read(toolPathProvider.notifier).update(file.path);
-    return true;
+    await StorageUtil.setString(AppKeys.toolPath, file.path);
   }
-  return false;
 }
 
-Future<bool> setWallpaperPath(WidgetRef ref) async {
+Future<void> refreshToolPath(WidgetRef ref) async {
+  await StorageUtil.remove(AppKeys.toolPath);
+  ref.read(toolPathProvider.notifier).update(getToolPath());
+  ref.read(toolVersionProvider.notifier).update(AppStrings.repkgVersion);
+}
+
+Future<void> setWallpaperPath(WidgetRef ref) async {
   final String? wallpaperPath = await getDirectoryPath();
   if (wallpaperPath != null) {
+    ref.read(selectedWallpaperProvider.notifier).update(null);
     ref.read(wallpaperPathProvider.notifier).update(wallpaperPath);
-    return true;
+    await StorageUtil.setString(AppKeys.wallpaperPath, wallpaperPath);
+    await refreshWallpaper(ref);
   }
-  return false;
+}
+
+Future<void> refreshWallpaperPath(WidgetRef ref) async {
+  String? before = StorageUtil.getString(AppKeys.wallpaperPathBefore);
+  if (before != null) {
+    ref.read(wallpaperPathProvider.notifier).update(before);
+  }
+  await refreshWallpaper(ref);
 }
 
 Future<void> browseFolder(WidgetRef ref) async {

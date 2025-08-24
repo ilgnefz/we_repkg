@@ -8,6 +8,7 @@ import 'package:we_repkg/config/custom_theme.dart';
 import 'package:we_repkg/constants/i10n.dart';
 import 'package:we_repkg/cores/base.dart';
 import 'package:we_repkg/cores/extract.dart';
+import 'package:we_repkg/models/wallpaper.dart';
 import 'package:we_repkg/provider/wallpaper.dart';
 import 'package:we_repkg/utils/tool.dart';
 import 'package:we_repkg/widgets/copy.dart';
@@ -19,9 +20,12 @@ class SideView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ThemeData theme = Theme.of(context);
-    final wallpaper = ref.watch(selectedWallpaperProvider);
+    WallpaperInfo? wallpaper = ref.watch(selectedWallpaperProvider);
+    List<WallpaperInfo> list = ref.watch(filterWallpaperListProvider);
 
-    if (wallpaper == null) return SizedBox.shrink();
+    if (wallpaper == null || !list.contains(wallpaper)) {
+      return SizedBox.shrink();
+    }
 
     Size size = MediaQuery.of(context).size;
 

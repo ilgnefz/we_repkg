@@ -76,6 +76,15 @@ List<WallpaperInfo> checkedWallpaperList(Ref ref) =>
 List<WallpaperInfo> filterWallpaperList(Ref ref) {
   List<WallpaperInfo> list = ref.watch(wallpaperListProvider);
   String keyWord = ref.watch(searchContentProvider);
+  switch (ref.watch(matureShowStateProvider)) {
+    case MatureState.hide:
+      list = list.where((e) => e.contentRating != 'mature').toList();
+      break;
+    case MatureState.show:
+      break;
+    case MatureState.only:
+      list = list.where((e) => e.contentRating == 'mature').toList();
+  }
   if (keyWord.isNotEmpty) {
     list = list.where((e) => e.title.contains(keyWord)).toList();
   }
@@ -97,9 +106,9 @@ List<WallpaperInfo> filterWallpaperList(Ref ref) {
   if (ref.watch(hideUnknownProvider)) {
     list = list.where((e) => e.type != '').toList();
   }
-  if (ref.watch(hideAdultProvider)) {
-    list = list.where((e) => e.contentRating != 'Mature').toList();
-  }
+  // if (ref.watch(hideAdultProvider)) {
+  //   list = list.where((e) => e.contentRating != 'Mature').toList();
+  // }
   switch (ref.watch(wallpaperSortTypeProvider)) {
     case SortType.time:
       String earliestDate = StorageUtil.getString(AppKeys.earliestDate) ?? '';

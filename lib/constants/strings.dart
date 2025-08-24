@@ -5,8 +5,8 @@ class AppStrings {
   static const String repkgAuthor = "notscuffed";
   static const String repkgRepo = "https://github.com/notscuffed/repkg";
   static const String appAuthor = "ilgnefz";
-  static const String appRepoGithub = "https://github.com/ilgnefz/we_export";
-  static const String appRepoGitte = "https://gitee.com/ilgnefz/we_export";
+  static const String appRepoGithub = "https://github.com/ilgnefz/we_repkg";
+  static const String appRepoGitte = "https://gitee.com/ilgnefz/we_repkg";
   static const String baseWallpaperPath =
       r'\SteamLibrary\steamapps\workshop\content\431960';
   static const String baseAcfPath =

@@ -2,11 +2,17 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as path;
+import 'package:we_repkg/constants/keys.dart';
+import 'package:we_repkg/utils/storage.dart';
 
 String getToolPath() {
-  String appPath = Platform.resolvedExecutable;
-  String folder = path.dirname(appPath);
-  return path.join(folder, 'RePKG.exe');
+  String? toolPath = StorageUtil.getString(AppKeys.toolPath);
+  if (toolPath == null) {
+    String appPath = Platform.resolvedExecutable;
+    String folder = path.dirname(appPath);
+    toolPath = path.join(folder, 'RePKG.exe');
+  }
+  return toolPath;
 }
 
 // String? defaultFont() => Platform.isWindows ? 'Microsoft YaHei' : null;

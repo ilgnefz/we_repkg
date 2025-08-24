@@ -7,6 +7,7 @@ import 'package:we_repkg/provider/setting.dart';
 import 'package:we_repkg/provider/system.dart';
 import 'package:we_repkg/utils/pack.dart';
 import 'package:we_repkg/views/setting/language_switch.dart';
+import 'package:we_repkg/views/setting/mature_switch.dart';
 import 'package:we_repkg/views/setting/theme_switch.dart';
 import 'package:we_repkg/widgets/dialog.dart';
 import 'package:we_repkg/widgets/link_text.dart';
@@ -66,12 +67,7 @@ class SettingView extends ConsumerWidget {
               onChanged: (value) =>
                   ref.read(hideUnknownProvider.notifier).update(value!),
             ),
-            SettingCheckbox(
-              label: tr(AppI10n.settingFilterHideMature),
-              value: ref.watch(hideAdultProvider),
-              onChanged: (value) =>
-                  ref.read(hideAdultProvider.notifier).update(value!),
-            ),
+            MatureSwitch(),
             SettingLabel(tr(AppI10n.settingConfigLabel)),
             SettingCheckbox(
               label: tr(AppI10n.settingConfigOnlySaveImage),

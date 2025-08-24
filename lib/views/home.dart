@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:we_repkg/views/bottom.dart';
-import 'package:we_repkg/views/side.dart';
 import 'package:we_repkg/views/title_bar/window_title_bar.dart';
-import 'package:we_repkg/views/top/top.dart';
 
+import 'bottom.dart';
 import 'content/content.dart';
+import 'side.dart';
+import 'top/top.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

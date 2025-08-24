@@ -28,11 +28,8 @@ class WallpaperPath extends _$WallpaperPath {
 @riverpod
 class ToolPath extends _$ToolPath {
   @override
-  String? build() => StorageUtil.getString(AppKeys.toolPath) ?? getToolPath();
-  void update(String? value) async {
-    state = value;
-    await StorageUtil.setString(AppKeys.toolPath, value!);
-  }
+  String? build() => getToolPath();
+  void update(String? value) => state = value;
 }
 
 @riverpod

@@ -5,7 +5,7 @@ class AppKeys {
   static const String hideVideo = 'hideVideo';
   static const String hideWeb = 'hideWeb';
   static const String hideApp = 'hideApp';
-  static const String hideAdult = 'hideAdult';
+  static const String matureState = 'matureState';
   static const String onlySaveImage = 'onlySaveImage';
   static const String excludeTexture = 'excludeTexture';
   static const String useTitleName = 'useTitleName';

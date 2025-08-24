@@ -22,7 +22,7 @@
     "createdDate": "Creation date",
     "extractCurrent": "Extract wallpaper",
     "extractForProject": "Extract as project",
-    "playVideo": "Play video",
+    "playVideo": "  Play video file  ",
     "openFileLocation": "Open file location",
     "deleteCurrent": "Delete wallpaper"
   },
@@ -50,8 +50,11 @@
       "hideVideo": "Hide video wallpapers",
       "hideWeb": "Hide web wallpapers",
       "hideApplication": "Hide application wallpapers",
-      "hideMature": "Hide mature wallpapers",
-      "hideUnknown": "Hide unknown wallpapers"
+      "hideUnknown": "Hide unknown wallpapers",
+      "hideMature": "Mature wallpapers",
+      "only": "Only show",
+      "show": "Show",
+      "hide": "Hide"
     },
     "config": {
       "label": "Config",
