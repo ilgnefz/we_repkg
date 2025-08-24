@@ -241,7 +241,8 @@ Future<String?> deleteOtherAndTexture(String outPath) async {
   if (await Directory('$outPath/materials').exists()) {
     final files = await Directory('$outPath/materials').list().toList();
     for (var file in files) {
-      if (file is File && isImage(file.path)) {
+      if (file is File &&
+          (isImage(file.path) || file.path.toLowerCase().endsWith('mp4'))) {
         try {
           await file.rename('$outPath/${path.basename(file.path)}');
         } catch (e) {
