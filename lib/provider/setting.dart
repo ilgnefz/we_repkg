@@ -186,3 +186,13 @@ class LocalNotificationType extends _$LocalNotificationType {
     await StorageUtil.setInt(AppKeys.notificationType, value.index);
   }
 }
+
+@riverpod
+class DeleteTransparency extends _$DeleteTransparency {
+  @override
+  bool build() => StorageUtil.getBool(AppKeys.deleteTransparency);
+  void update(bool value) async {
+    state = value;
+    await StorageUtil.setBool(AppKeys.deleteTransparency, state);
+  }
+}

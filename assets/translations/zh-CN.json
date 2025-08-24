@@ -66,7 +66,9 @@
       "toolPath": "工具路径",
       "toolPathTip": "请选择 RePKG.exe 的路径",
       "wallpapersPath": "壁纸路径",
-      "wallpapersPathTip": "请选择壁纸的路径"
+      "wallpapersPathTip": "请选择壁纸的路径",
+      "deleteTransparency": "删除透明图片",
+      "deleteTransparencyTip": "提取的图片中有透明度的图片将会被删除至回收站"
     },
     "system": {
       "label": "系统",

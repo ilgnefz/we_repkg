@@ -59,7 +59,7 @@ class AppI10n {
   static const settingFilterShow = 'setting.filter.show';
   static const settingFilterHide = 'setting.filter.hide';
 
-  // 设置-提取相关
+  // 设置-配置相关
   static const settingConfigLabel = 'setting.config.label';
   static const settingConfigOnlySaveImage = 'setting.config.onlySaveImage';
   static const settingConfigNoTexture = 'setting.config.noTexture';
@@ -74,6 +74,10 @@ class AppI10n {
   static const settingConfigWallpapersPath = 'setting.config.wallpapersPath';
   static const settingConfigWallpapersPathTip =
       'setting.config.wallpapersPathTip';
+  static const settingConfigDeleteTransparency =
+      'setting.config.deleteTransparency';
+  static const settingConfigDeleteTransparencyTip =
+      'setting.config.deleteTransparencyTip';
 
   // 设置-系统相关
   static const settingSystemLabel = 'setting.system.label';

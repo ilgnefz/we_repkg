@@ -169,12 +169,29 @@ Future<String?> deleteUselessFiles(
 ) async {
   bool onlySaveImage = ref.watch(onlySaveImageProvider);
   bool excludeTexture = ref.watch(excludeTextureProvider);
+  bool deleteTransparency = ref.watch(deleteTransparencyProvider);
+  String? err;
   if (onlySaveImage && !excludeTexture) {
-    return await deleteOther(outPath, oldFiles);
+    err = await deleteOther(outPath, oldFiles);
   } else if (excludeTexture) {
-    return await deleteOtherAndTexture(outPath);
+    err = await deleteOtherAndTexture(outPath);
   }
-  return null;
+  // 如果启用了删除透明PNG功能，执行透明PNG删除
+  if (deleteTransparency && err == null) {
+    Directory folder = Directory(outPath);
+    List<FileSystemEntity> files = await folder.list().toList();
+    List<String> filePaths = files
+        .whereType<File>()
+        .map((file) => file.path)
+        .toList();
+    List<String> oldFilePaths = oldFiles.map((file) => file.path).toList();
+    String? transparencyErr = await deleteTransparentPngs(
+      filePaths,
+      excludeFiles: oldFilePaths,
+    );
+    if (transparencyErr != null) err = transparencyErr;
+  }
+  return err;
 }
 
 Future<String?> deleteOther(
@@ -262,4 +279,30 @@ Future<String?> deleteOtherAndTexture(String outPath) async {
     return e.toString();
   }
   return null;
+}
+
+Future<String?> deleteTransparentPngs(
+  List<String> files, {
+  List<String> excludeFiles = const [],
+}) async {
+  List<String> beDeleteList = [];
+  // 使用Set提高排除文件查找性能
+  Set<String> excludeSet = excludeFiles.toSet();
+  List<String> pngs = files
+      .where(
+        (file) =>
+            file.toLowerCase().endsWith('.png') && !excludeSet.contains(file),
+      )
+      .toList();
+  // 使用Future.wait来并行处理所有PNG文件的透明度检测
+  List<bool> transparencyResults = await Future.wait(
+    pngs.map((png) => hasPngTransparency(png)),
+  );
+  for (int i = 0; i < pngs.length; i++) {
+    if (transparencyResults[i]) {
+      beDeleteList.add(pngs[i]);
+    }
+  }
+  String? err = await deleteAllToTrash(filePaths: beDeleteList);
+  return err;
 }

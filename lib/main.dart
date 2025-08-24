@@ -11,6 +11,11 @@ import 'package:we_repkg/views/home.dart';
 
 import 'config/app.dart';
 
+// TODO: 自动删除透明度图片
+// TODO: 批量提取为项目
+// TODO: 自动移动项目文件到工作空间文件夹
+// TODO: PKG里可能打包了视频文件
+
 Future<void> main() async {
   await AppConfig.init([]);
   runApp(

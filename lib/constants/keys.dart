@@ -23,4 +23,5 @@ class AppKeys {
   static const String ctrlPressedIndex = 'ctrlPressedIndex';
   static const String theme = 'theme';
   static const String notificationType = 'notificationType';
+  static const String deleteTransparency = 'deleteTransparency';
 }
