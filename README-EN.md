@@ -54,7 +54,7 @@ You can also export only the selected wallpapers via multi-selection:
 
 Before extraction, you can configure the export settings in the "Settings" menu:
 
-![01](docs/01.jpg)
+![01](docs/01.png)
 
 When you unsubscribe from a wallpaper on Wallpaper Engine, it will not be deleted immediately. You can manually delete it to the Recycle Bin within this tool:
 
