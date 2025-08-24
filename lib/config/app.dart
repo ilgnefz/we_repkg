@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:local_notifier/local_notifier.dart';
 import 'package:we_repkg/constants/strings.dart';
 import 'package:we_repkg/src/rust/frb_generated.dart';
 import 'package:we_repkg/utils/pack.dart';
@@ -16,6 +17,11 @@ class AppConfig {
     await windowManager.ensureInitialized();
 
     // await StorageUtil.clear();
+
+    await localNotifier.setup(
+      appName: AppStrings.appName,
+      shortcutPolicy: ShortcutPolicy.requireCreate,
+    );
 
     WindowOptions windowOptions = WindowOptions(
       size: Size(1060, 720),

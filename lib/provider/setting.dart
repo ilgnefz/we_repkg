@@ -174,3 +174,15 @@ class ReplaceFile extends _$ReplaceFile {
     await StorageUtil.setBool(AppKeys.replaceFile, state);
   }
 }
+
+@riverpod
+class LocalNotificationType extends _$LocalNotificationType {
+  @override
+  NotificationType build() =>
+      NotificationType.values[StorageUtil.getInt(AppKeys.notificationType) ??
+          1];
+  void update(NotificationType value) async {
+    state = value;
+    await StorageUtil.setInt(AppKeys.notificationType, value.index);
+  }
+}

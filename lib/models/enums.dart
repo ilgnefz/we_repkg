@@ -95,3 +95,19 @@ extension MatureStateExtension on MatureState {
   bool get isShow => this == MatureState.show;
   bool get isHide => this == MatureState.hide;
 }
+
+enum NotificationType { system, app }
+
+extension NotificationTypeExtension on NotificationType {
+  String get label {
+    switch (this) {
+      case NotificationType.system:
+        return tr(AppI10n.settingSystemInSystem);
+      case NotificationType.app:
+        return tr(AppI10n.settingSystemInApp);
+    }
+  }
+
+  bool get isSystem => this == NotificationType.system;
+  bool get isApp => this == NotificationType.app;
+}

@@ -70,6 +70,9 @@
     },
     "system": {
       "label": "系统",
+      "notification": "通知",
+      "inSystem": "系统",
+      "inApp": "软件",
       "language": "语言",
       "theme": "主题",
       "light": "浅色主题",

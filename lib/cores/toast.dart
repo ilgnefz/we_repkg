@@ -1,9 +1,12 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:local_notifier/local_notifier.dart';
 import 'package:we_repkg/constants/i10n.dart';
+import 'package:we_repkg/constants/keys.dart';
 import 'package:we_repkg/models/error.dart';
 import 'package:we_repkg/models/wallpaper.dart';
+import 'package:we_repkg/utils/storage.dart';
 import 'package:we_repkg/views/states/error.dart';
 import 'package:we_repkg/views/states/loading.dart';
 import 'package:we_repkg/widgets/toast.dart';
@@ -22,16 +25,24 @@ void showCopyToast() {
 }
 
 void showExtractSuccessToast() {
-  BotToast.showCustomText(
-    duration: Duration(seconds: 3),
-    toastBuilder: (void Function() cancelFunc) {
-      return ToastView(
-        icon: Icons.check_circle,
-        iconColor: Colors.green,
-        text: tr(AppI10n.dialogOperationCompleted),
-      );
-    },
+  int index = StorageUtil.getInt(AppKeys.notificationType) ?? 1;
+  if (index == 1) {
+    BotToast.showCustomText(
+      duration: Duration(seconds: 3),
+      toastBuilder: (void Function() cancelFunc) {
+        return ToastView(
+          icon: Icons.check_circle,
+          iconColor: Colors.green,
+          text: tr(AppI10n.dialogOperationCompleted),
+        );
+      },
+    );
+    return;
+  }
+  LocalNotification notification = LocalNotification(
+    title: tr(AppI10n.dialogOperationCompleted),
   );
+  notification.show();
 }
 
 void showToolNoExistToast() {

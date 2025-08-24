@@ -22,4 +22,5 @@ class AppKeys {
   // static const String hadPressedCtrl = 'hadPressedCtrl';
   static const String ctrlPressedIndex = 'ctrlPressedIndex';
   static const String theme = 'theme';
+  static const String notificationType = 'notificationType';
 }

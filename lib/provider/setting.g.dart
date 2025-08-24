@@ -6,7 +6,7 @@ part of 'setting.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$showAllHash() => r'd267c65182a26d5f69cac918e5b75fc7aef03d42';
+String _$showAllHash() => r'2d2c3152169bc738b8cb73010864f5841436febe';
 
 /// See also [ShowAll].
 @ProviderFor(ShowAll)
@@ -209,5 +209,25 @@ final replaceFileProvider =
     );
 
 typedef _$ReplaceFile = AutoDisposeNotifier<bool>;
+String _$localNotificationTypeHash() =>
+    r'60c745f0e6ae544e18201a8900455d239c71a588';
+
+/// See also [LocalNotificationType].
+@ProviderFor(LocalNotificationType)
+final localNotificationTypeProvider =
+    AutoDisposeNotifierProvider<
+      LocalNotificationType,
+      NotificationType
+    >.internal(
+      LocalNotificationType.new,
+      name: r'localNotificationTypeProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$localNotificationTypeHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+typedef _$LocalNotificationType = AutoDisposeNotifier<NotificationType>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -77,6 +77,9 @@ class AppI10n {
 
   // 设置-系统相关
   static const settingSystemLabel = 'setting.system.label';
+  static const settingSystemNotification = 'setting.system.notification';
+  static const settingSystemInSystem = 'setting.system.inSystem';
+  static const settingSystemInApp = 'setting.system.inApp';
   static const settingSystemLanguage = 'setting.system.language';
   static const settingSystemTheme = 'setting.system.theme';
   static const settingSystemLight = 'setting.system.light';

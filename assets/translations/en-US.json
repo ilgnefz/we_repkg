@@ -70,6 +70,9 @@
     },
     "system": {
       "label": "System",
+      "notification": "Notification",
+      "inSystem": "System",
+      "inApp": "Application",
       "language": "Language",
       "theme": "Theme",
       "light": "Light",
