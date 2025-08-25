@@ -96,13 +96,13 @@ Future<void> _handleStorageLogic(
   }
   if (wallpaperPath != null) {
     // 保存首次发现的壁纸路径
-    final before = StorageUtil.getString(AppKeys.wallpaperPathBefore);
-    if (before == null) {
-      await StorageUtil.setString(AppKeys.wallpaperPathBefore, wallpaperPath);
-    }
+    // final before = StorageUtil.getString(AppKeys.wallpaperPathBefore);
+    // if (before == null) {
+    //   await StorageUtil.setString(AppKeys.wallpaperPathBefore, wallpaperPath);
+    // }
     // 设置项目默认路径
-    // final projectPath = projectDefaultPath(wallpaperPath);
-    // await StorageUtil.setString(AppKeys.projectPath, projectPath);
+    final projectPath = projectDefaultPath(wallpaperPath);
+    await StorageUtil.setString(AppKeys.projectPath, projectPath);
   }
 }
 

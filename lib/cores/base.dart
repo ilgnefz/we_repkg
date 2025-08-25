@@ -94,9 +94,10 @@ Future<void> setWallpaperPath(WidgetRef ref) async {
 }
 
 Future<void> refreshWallpaperPath(WidgetRef ref) async {
-  String? before = StorageUtil.getString(AppKeys.wallpaperPathBefore);
-  if (before != null) {
-    ref.read(wallpaperPathProvider.notifier).update(before);
+  // String? before = StorageUtil.getString(AppKeys.wallpaperPathBefore);
+  String? wallpaperPath = await getWallpaperPath();
+  if (wallpaperPath != null) {
+    ref.read(wallpaperPathProvider.notifier).update(wallpaperPath);
   }
   await refreshWallpaper(ref);
 }

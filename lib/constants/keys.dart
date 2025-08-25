@@ -12,7 +12,7 @@ class AppKeys {
   static const String replaceFile = 'replaceFile';
   static const String sortAscending = 'sortAscending';
   static const String wallpaperPath = 'wallpaperPath';
-  static const String wallpaperPathBefore = 'wallpaperPathBefore';
+  // static const String wallpaperPathBefore = 'wallpaperPathBefore';
   static const String toolPath = 'toolPath';
   static const String exportPath = 'exportPath';
   static const String toolVersion = 'toolVersion';
