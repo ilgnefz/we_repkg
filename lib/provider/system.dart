@@ -109,3 +109,14 @@ class LoadingText extends _$LoadingText {
 
   void update(String value) => state = value;
 }
+
+@riverpod
+class CurrentExtractType extends _$CurrentExtractType {
+  @override
+  ExtractType build() =>
+      ExtractType.values[StorageUtil.getInt(AppKeys.extractType) ?? 0];
+  void update(ExtractType value) async {
+    state = value;
+    await StorageUtil.setInt(AppKeys.extractType, value.index);
+  }
+}

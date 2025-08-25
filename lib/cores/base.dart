@@ -9,6 +9,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:we_repkg/constants/i10n.dart';
 import 'package:we_repkg/constants/keys.dart';
 import 'package:we_repkg/constants/strings.dart';
+import 'package:we_repkg/models/enums.dart';
 import 'package:we_repkg/models/wallpaper.dart';
 import 'package:we_repkg/provider/setting.dart';
 import 'package:we_repkg/provider/system.dart';
@@ -20,8 +21,8 @@ import 'package:we_repkg/utils/storage.dart';
 import 'toast.dart';
 import 'wallpaper.dart';
 
-Future<bool> setExportPath(WidgetRef ref) async {
-  showSelectFolderToast(tr(AppI10n.extractFolderToast));
+Future<bool> setExportPath(WidgetRef ref, [bool show = false]) async {
+  if (show) showSelectFolderToast(tr(AppI10n.extractFolderToast));
   final String? exportPath = await getDirectoryPath();
   if (exportPath != null) {
     ref.read(exportPathProvider.notifier).update(exportPath);
@@ -60,8 +61,8 @@ Future<void> refreshToolPath(WidgetRef ref) async {
   ref.read(toolVersionProvider.notifier).update(AppStrings.repkgVersion);
 }
 
-Future<bool> setProjectPath(WidgetRef ref) async {
-  showSelectFolderToast(tr(AppI10n.projectFolderToast));
+Future<bool> setProjectPath(WidgetRef ref, [bool show = false]) async {
+  if (show) showSelectFolderToast(tr(AppI10n.projectFolderToast));
   String? projectPath = await getDirectoryPath();
   if (projectPath != null) {
     ref.read(projectPathProvider.notifier).update(projectPath);
@@ -101,7 +102,10 @@ Future<void> refreshWallpaperPath(WidgetRef ref) async {
 }
 
 Future<void> browseFolder(WidgetRef ref) async {
-  String? folderPath = ref.watch(exportPathProvider);
+  ExtractType type = ref.watch(currentExtractTypeProvider);
+  String? folderPath = type.isWallpaper
+      ? ref.watch(exportPathProvider)
+      : ref.watch(projectPathProvider);
   if (folderPath == null) return;
   folderPath = folderPath.replaceAll('\\', '/');
   final uri = Uri.parse('file:///$folderPath');
@@ -128,15 +132,15 @@ Future<void> playVideo(WallpaperInfo wallpaper) async {
   }
 }
 
-Future<bool> checkExportPath(WidgetRef ref) async {
+Future<bool> checkExportPath(WidgetRef ref, [bool show = false]) async {
   String? exportPath = ref.watch(exportPathProvider);
-  if (exportPath == null) return await setExportPath(ref);
+  if (exportPath == null) return await setExportPath(ref, show);
   return true;
 }
 
-Future<bool> checkProjectPath(WidgetRef ref) async {
+Future<bool> checkProjectPath(WidgetRef ref, [bool show = false]) async {
   String? projectPath = ref.watch(projectPathProvider);
-  if (projectPath == null) return await setProjectPath(ref);
+  if (projectPath == null) return await setProjectPath(ref, show);
   return true;
 }
 
@@ -216,11 +220,7 @@ Future<String?> deleteUselessFiles(
         .map((file) => file.path)
         .toList();
     List<String> oldFilePaths = oldFiles.map((file) => file.path).toList();
-    String? transparencyErr = await deleteTransparentPngs(
-      filePaths,
-      excludeFiles: oldFilePaths,
-    );
-    if (transparencyErr != null) err = transparencyErr;
+    err = await deleteTransparentPngs(filePaths, excludeFiles: oldFilePaths);
   }
   return err;
 }
@@ -285,6 +285,7 @@ Future<String?> deleteOtherAndTexture(String outPath) async {
     'particles',
     'shaders',
     'sounds',
+    'scripts',
   ];
 
   List<Future<void>> folderDeletionFutures = [];
@@ -317,7 +318,6 @@ Future<String?> deleteTransparentPngs(
   List<String> files, {
   List<String> excludeFiles = const [],
 }) async {
-  List<String> beDeleteList = [];
   // 使用Set提高排除文件查找性能
   Set<String> excludeSet = excludeFiles.toSet();
   List<String> pngs = files
@@ -326,15 +326,12 @@ Future<String?> deleteTransparentPngs(
             file.toLowerCase().endsWith('.png') && !excludeSet.contains(file),
       )
       .toList();
-  // 使用Future.wait来并行处理所有PNG文件的透明度检测
-  List<bool> transparencyResults = await Future.wait(
-    pngs.map((png) => hasPngTransparency(png)),
-  );
-  for (int i = 0; i < pngs.length; i++) {
-    if (transparencyResults[i]) {
-      beDeleteList.add(pngs[i]);
-    }
+  if (pngs.isEmpty) return null;
+  // 调用Rust函数进行批量透明度检测和删除
+  List<String> errors = await deleteTransparentPngsRust(filePaths: pngs);
+  // 如果有错误信息，返回第一个错误
+  if (errors.isNotEmpty) {
+    return errors.first;
   }
-  String? err = await deleteAllToTrash(filePaths: beDeleteList);
-  return err;
+  return null;
 }

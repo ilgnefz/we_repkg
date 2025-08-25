@@ -89,14 +89,15 @@ class SideView extends ConsumerWidget {
                     ),
                   ],
                   SizedBox(height: 4),
-                  if (wallpaper.type != 'application')
+                  if (wallpaper.type != 'application' ||
+                      wallpaper.type != 'web')
                     CustomBtn(
                       onPressed: () => extractCurrent(ref, wallpaper),
                       label: tr(AppI10n.homeExtractCurrent),
                     ),
                   if (wallpaper.type == 'scene')
                     CustomBtn(
-                      onPressed: () => extractProject(ref, wallpaper),
+                      onPressed: () => extractProject(ref, [wallpaper]),
                       label: tr(AppI10n.homeExtractForProject),
                     ),
                   if (wallpaper.type == 'video')

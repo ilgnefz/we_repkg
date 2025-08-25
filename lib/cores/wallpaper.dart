@@ -40,10 +40,10 @@ Future<List<String>> getWindowsDisks() async {
 }
 
 Future<String?> getWallpaperPath() async {
-  List<String> disks = await getWindowsDisks();
+  final disks = await getWindowsDisks();
   if (disks.isEmpty) return null;
   // 生成所有可能的壁纸路径
-  List<String> tempPaths = _generateWallpaperPaths(disks);
+  final tempPaths = _generateWallpaperPaths(disks);
   // 查找存在的壁纸路径
   final (wallpaperPath, infoPath) = await _findWallpaperPath(tempPaths);
   // 处理存储逻辑
@@ -91,7 +91,9 @@ Future<void> _handleStorageLogic(
   String? wallpaperPath,
   String? infoPath,
 ) async {
-  if (infoPath != null) await StorageUtil.setString(AppKeys.infoPath, infoPath);
+  if (infoPath != null) {
+    await StorageUtil.setString(AppKeys.infoPath, infoPath);
+  }
   if (wallpaperPath != null) {
     // 保存首次发现的壁纸路径
     final before = StorageUtil.getString(AppKeys.wallpaperPathBefore);
@@ -99,8 +101,8 @@ Future<void> _handleStorageLogic(
       await StorageUtil.setString(AppKeys.wallpaperPathBefore, wallpaperPath);
     }
     // 设置项目默认路径
-    final projectPath = projectDefaultPath(wallpaperPath);
-    await StorageUtil.setString(AppKeys.projectPath, projectPath);
+    // final projectPath = projectDefaultPath(wallpaperPath);
+    // await StorageUtil.setString(AppKeys.projectPath, projectPath);
   }
 }
 

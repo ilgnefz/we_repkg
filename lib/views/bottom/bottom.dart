@@ -7,8 +7,10 @@ import 'package:we_repkg/cores/extract.dart';
 import 'package:we_repkg/models/wallpaper.dart';
 import 'package:we_repkg/provider/system.dart';
 import 'package:we_repkg/provider/wallpaper.dart';
+import 'package:we_repkg/views/bottom/toggle_input.dart';
 import 'package:we_repkg/widgets/custom_btn.dart';
-import 'package:we_repkg/widgets/folder_input.dart';
+
+import 'function_selected_btn.dart';
 
 class BottomView extends ConsumerWidget {
   const BottomView({super.key});
@@ -22,19 +24,8 @@ class BottomView extends ConsumerWidget {
       child: Row(
         spacing: 8,
         children: [
-          Text(
-            '${tr(AppI10n.homeExtractTo)}:',
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
-          Expanded(
-            child: FolderInput(
-              controller: TextEditingController(
-                text: ref.watch(exportPathProvider),
-              ),
-              hintText: tr(AppI10n.homeExtractFolderTip),
-              onPressed: () => setExportPath(ref),
-            ),
-          ),
+          FunctionSelectedBtn(),
+          ToggleInput(),
           CustomBtn(
             onPressed: ref.watch(exportPathProvider) == null
                 ? null

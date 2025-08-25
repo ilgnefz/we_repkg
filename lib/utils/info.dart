@@ -73,7 +73,7 @@ Future<bool> hasPngTransparency(String imagePath) async {
     // 检查像素透明度
     return _imageHasTransparentPixels(image);
   } catch (e) {
-    print('检查图片透明度失败: $e');
+    debugPrint('检查图片透明度失败: $e');
     return false;
   }
 }

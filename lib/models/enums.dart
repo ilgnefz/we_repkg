@@ -111,3 +111,19 @@ extension NotificationTypeExtension on NotificationType {
   bool get isSystem => this == NotificationType.system;
   bool get isApp => this == NotificationType.app;
 }
+
+enum ExtractType { wallpaper, project }
+
+extension ExtractTypeExtension on ExtractType {
+  String get label {
+    switch (this) {
+      case ExtractType.wallpaper:
+        return tr(AppI10n.homeWallpaper);
+      case ExtractType.project:
+        return tr(AppI10n.homeProject);
+    }
+  }
+
+  bool get isWallpaper => this == ExtractType.wallpaper;
+  bool get isProject => this == ExtractType.project;
+}

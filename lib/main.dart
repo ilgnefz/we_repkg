@@ -11,12 +11,6 @@ import 'package:we_repkg/views/home.dart';
 
 import 'config/app.dart';
 
-// TODO: 批量提取为项目
-// TODO: 自动移动项目文件到工作空间文件夹
-// TODO: PKG里可能打包了视频文件
-// TODO: C盘默认目录
-// TODO: Empty ref 错误
-
 Future<void> main() async {
   await AppConfig.init([]);
   runApp(

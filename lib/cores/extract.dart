@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart' as path;
 import 'package:we_repkg/constants/i10n.dart';
+import 'package:we_repkg/models/enums.dart';
 import 'package:we_repkg/models/error.dart';
 import 'package:we_repkg/models/wallpaper.dart';
 import 'package:we_repkg/provider/setting.dart';
@@ -16,119 +17,120 @@ import 'package:we_repkg/utils/tool.dart';
 import 'base.dart';
 import 'toast.dart';
 
-Future<void> extractProject(WidgetRef ref, WallpaperInfo wallpaper) async {
-  bool useProjectPath = ref.watch(useProjectPathProvider);
-  if (useProjectPath) {
-    if (!await checkProjectPath(ref)) return;
-  } else {
-    if (!await checkExportPath(ref)) return;
-  }
-  String? rePKGPath = ref.watch(toolPathProvider);
-  if (!await toolExist(rePKGPath)) return showToolNoExistToast();
-  changeLoadingText(ref, tr(AppI10n.dialogProcessingWallpaper));
-  final cancel = showLoadingView([wallpaper]);
-  String outPath = useProjectPath
-      ? ref.watch(projectPathProvider)!
-      : ref.watch(exportPathProvider)!;
-  if (ref.watch(useTitleNameProvider)) {
-    outPath = path.join(outPath, wallpaper.title);
-  } else {
-    String folderName = path.basename(wallpaper.folder);
-    outPath = path.join(outPath, folderName);
-  }
-  try {
-    await Directory(outPath).create();
-  } catch (e) {
-    debugPrint('创建目录失败: $e');
-    cancel.call();
-    return showErrorView([
-      ErrorInfo(
-        wallpaper: wallpaper,
-        message: '${tr(AppI10n.errorCreatedFolderFailed)} $e',
-      ),
-    ]);
-  }
-  ref.read(currentIndexProvider.notifier).update(0);
-  try {
-    String? overwrite = ref.watch(replaceFileProvider) ? '--overwrite' : null;
-    final args = [
-      'extract',
-      '-c',
-      if (overwrite != null) overwrite,
-      '-o',
-      outPath,
-      wallpaper.target,
-    ].cast<String>().toList();
-    String fullCommand = '$rePKGPath ${args.join(' ')}';
-    debugPrint('执行完整命令: $fullCommand');
-    ProcessResult result = await Process.run(
-      rePKGPath!,
-      args,
-      runInShell: true,
-    );
-    int exitCode = result.exitCode;
-    String stdout = result.stdout;
-    String stderr = result.stderr;
-    debugPrint('标准输出: $stdout');
-    debugPrint('标准错误: $stderr');
-    if (exitCode != 0) {
-      cancel.call();
-      return showErrorView([
-        ErrorInfo(
-          wallpaper: wallpaper,
-          message: '${tr(AppI10n.errorExtractFailed)} $stderr',
-        ),
-      ]);
-    }
-  } catch (e) {
-    debugPrint('提取失败: $e');
-    cancel.call();
-    return showErrorView([
-      ErrorInfo(
-        wallpaper: wallpaper,
-        message: '${tr(AppI10n.errorExtractFailed)} $stderr',
-      ),
-    ]);
-  }
-  cancel.call();
-  showExtractSuccessToast();
-}
-
-Future<void> extractCurrent(WidgetRef ref, WallpaperInfo wallpaper) async {
-  if (!await checkExportPath(ref)) return;
-  String? rePKGPath = ref.watch(toolPathProvider);
-  if (!await toolExist(rePKGPath)) return showToolNoExistToast();
-  List<ErrorInfo> errList = [];
-  String target = wallpaper.target;
-  String outPath = ref.watch(exportPathProvider)!;
-  List<FileSystemEntity> oldFiles = await Directory(outPath).list().toList();
-  changeLoadingText(ref, tr(AppI10n.dialogProcessingWallpaper));
-  ref.read(currentIndexProvider.notifier).update(0);
-  final cancel = showLoadingView([wallpaper]);
-  bool needClear = false;
-  (String?, bool) res = await extractBranch(ref, target, outPath);
-  String? err = res.$1;
-  needClear = res.$2;
-  if (err == null && needClear) {
-    changeLoadingText(ref, tr(AppI10n.dialogProcessingDelete));
-    err = await deleteUselessFiles(ref, outPath, oldFiles);
-  }
-  if (err != null) errList.add(ErrorInfo(wallpaper: wallpaper, message: err));
-  cancel.call();
-  errList.isNotEmpty ? showErrorView(errList) : showExtractSuccessToast();
-}
-
-// 新增的通用提取方法
-Future<void> _extractWallpapers(
+Future<void> extractProject(
   WidgetRef ref,
   List<WallpaperInfo> wallpapers,
 ) async {
-  if (!await checkExportPath(ref)) return;
+  bool useProjectPath = ref.watch(useProjectPathProvider);
+  ExtractType extractType = ref.watch(currentExtractTypeProvider);
+  if (useProjectPath || extractType.isProject) {
+    if (!await checkProjectPath(ref, true)) return;
+  } else {
+    if (!await checkExportPath(ref, true)) return;
+  }
+  String? rePKGPath = ref.watch(toolPathProvider);
+  if (!await toolExist(rePKGPath)) return showToolNoExistToast();
+  List<ErrorInfo> errList = [];
+  List<String> skipList = [];
+  String outPath = useProjectPath || extractType.isProject
+      ? ref.watch(projectPathProvider)!
+      : ref.watch(exportPathProvider)!;
+  // if (!await Directory(outPath).exists()) await Directory(outPath).create();
+  print('输出路径: $outPath');
+  changeLoadingText(ref, tr(AppI10n.dialogProcessingWallpaper));
+  final cancel = showLoadingView(wallpapers);
+  int index = 0;
+  final basePath = outPath;
+  for (WallpaperInfo wallpaper in wallpapers) {
+    ref.read(currentIndexProvider.notifier).update(index);
+    if (!wallpaper.target.toLowerCase().endsWith('pkg')) {
+      skipList.add(wallpaper.title);
+      continue;
+    }
+    if (ref.watch(useTitleNameProvider)) {
+      String title = renameFolder(wallpaper.title);
+      outPath = path.join(basePath, title);
+    } else {
+      outPath = path.join(basePath, wallpaper.id);
+    }
+    try {
+      await Directory(outPath).create();
+    } catch (e) {
+      debugPrint('创建目录失败: $e');
+      errList.add(
+        ErrorInfo(
+          wallpaper: wallpaper,
+          message: '${tr(AppI10n.errorCreatedFolderFailed)} $e',
+        ),
+      );
+      index++;
+      continue;
+    }
+    try {
+      String? overwrite = ref.watch(replaceFileProvider) ? '--overwrite' : null;
+      final args = [
+        'extract',
+        '-c',
+        if (overwrite != null) overwrite,
+        '-o',
+        outPath,
+        wallpaper.target,
+      ].cast<String>().toList();
+      String fullCommand = '$rePKGPath ${args.join(' ')}';
+      debugPrint('执行完整命令: $fullCommand');
+      ProcessResult result = await Process.run(
+        rePKGPath!,
+        args,
+        runInShell: true,
+      );
+      int exitCode = result.exitCode;
+      String stdout = result.stdout;
+      String stderr = result.stderr;
+      debugPrint('标准输出: $stdout');
+      debugPrint('标准错误: $stderr');
+      if (exitCode != 0) {
+        errList.add(
+          ErrorInfo(
+            wallpaper: wallpaper,
+            message: '${tr(AppI10n.errorExtractFailed)} $stderr',
+          ),
+        );
+      }
+    } catch (e) {
+      debugPrint('提取失败: $e');
+      errList.add(
+        ErrorInfo(
+          wallpaper: wallpaper,
+          message: '${tr(AppI10n.errorExtractFailed)} $e',
+        ),
+      );
+    }
+    index++;
+  }
+  cancel.call();
+  errList.isNotEmpty ? showErrorView(errList) : showProjectToast(skipList);
+}
+
+Future<void> exportCurrentProject(
+  WidgetRef ref,
+  WallpaperInfo wallpaper,
+) async {
+  await extractProject(ref, [wallpaper]);
+}
+
+// 新增的通用提取方法
+Future<void> extractWallpapers(
+  WidgetRef ref,
+  List<WallpaperInfo> wallpapers,
+) async {
+  if (!await checkExportPath(ref, true)) return;
   String? rePKGPath = ref.watch(toolPathProvider);
   if (!await toolExist(rePKGPath)) return showToolNoExistToast();
   List<ErrorInfo> errList = [];
   String outPath = ref.watch(exportPathProvider)!;
-  List<FileSystemEntity> oldFiles = await Directory(outPath).list().toList();
+  Directory outDir = Directory(outPath);
+  if (!await outDir.exists()) await outDir.create();
+  List<FileSystemEntity> oldFiles = await outDir.list().toList();
   int index = 0;
   changeLoadingText(ref, tr(AppI10n.dialogProcessingWallpaper));
   final cancel = showLoadingView(wallpapers);
@@ -151,14 +153,28 @@ Future<void> _extractWallpapers(
   errList.isNotEmpty ? showErrorView(errList) : showExtractSuccessToast();
 }
 
+Future<void> extractCurrent(WidgetRef ref, WallpaperInfo wallpaper) async {
+  await extractWallpapers(ref, [wallpaper]);
+}
+
 Future<void> extractChecked(WidgetRef ref) async {
   List<WallpaperInfo> wallpapers = ref.watch(checkedWallpaperListProvider);
-  await _extractWallpapers(ref, wallpapers);
+  ExtractType extractType = ref.watch(currentExtractTypeProvider);
+  if (extractType.isWallpaper) {
+    await extractWallpapers(ref, wallpapers);
+  } else {
+    await extractProject(ref, wallpapers);
+  }
 }
 
 Future<void> extractAll(WidgetRef ref) async {
   List<WallpaperInfo> wallpapers = ref.watch(filterWallpaperListProvider);
-  await _extractWallpapers(ref, wallpapers);
+  ExtractType extractType = ref.watch(currentExtractTypeProvider);
+  if (extractType.isWallpaper) {
+    await extractWallpapers(ref, wallpapers);
+  } else {
+    await extractProject(ref, wallpapers);
+  }
 }
 
 Future<(String?, bool)> extractBranch(
@@ -203,7 +219,9 @@ Future<String?> extractPKG(WidgetRef ref, String file, String outPath) async {
     debugPrint('退出代码: $exitCode');
     debugPrint('标准输出: $stdout');
     debugPrint('标准错误: $stderr');
-    if (exitCode == 1) return stderr;
+    if (exitCode != 0) {
+      return '${tr(AppI10n.errorExtractFailed)} (Exit code: $exitCode)\n$stderr';
+    }
   } catch (e) {
     debugPrint('提取失败: $e');
     return '${tr(AppI10n.errorExtractFailed)} $e';
@@ -220,7 +238,7 @@ Future<String?> extractVideo(
   stopwatch.start();
   try {
     final fileName = filePath.split(Platform.pathSeparator).last;
-    final targetPath = renameFile('$outPath${Platform.pathSeparator}$fileName');
+    final targetPath = renameFile(path.join(outPath, fileName));
     final sourceFile = File(filePath);
     final destinationFile = File(targetPath);
     final totalSize = await sourceFile.length();

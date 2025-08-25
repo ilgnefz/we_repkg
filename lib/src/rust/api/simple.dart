@@ -14,3 +14,23 @@ Future<String?> deleteToTrash({required String filePath}) =>
 
 Future<String?> deleteAllToTrash({required List<String> filePaths}) =>
     RustLib.instance.api.crateApiSimpleDeleteAllToTrash(filePaths: filePaths);
+
+Future<bool> hasPngTransparencyRust({required String filePath}) => RustLib
+    .instance
+    .api
+    .crateApiSimpleHasPngTransparencyRust(filePath: filePath);
+
+Future<List<ResultBoolString>> hasPngTransparencyBatchRust({
+  required List<String> filePaths,
+}) => RustLib.instance.api.crateApiSimpleHasPngTransparencyBatchRust(
+  filePaths: filePaths,
+);
+
+Future<List<String>> deleteTransparentPngsRust({
+  required List<String> filePaths,
+}) => RustLib.instance.api.crateApiSimpleDeleteTransparentPngsRust(
+  filePaths: filePaths,
+);
+
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Result < bool , String >>>
+abstract class ResultBoolString implements RustOpaqueInterface {}

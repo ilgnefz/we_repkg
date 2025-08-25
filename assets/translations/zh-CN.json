@@ -24,7 +24,9 @@
     "extractForProject": "提取为原项目",
     "playVideo": "播放视频文件",
     "openFileLocation": "打开文件位置",
-    "deleteCurrent": "删除当前壁纸"
+    "deleteCurrent": "删除当前壁纸",
+    "wallpaper": "壁纸",
+    "project": "项目"
   },
   "dialog": {
     "operationCompleted": "操作完成",
@@ -39,7 +41,8 @@
     "folderNoExist": "文件夹不存在",
     "playVideoFailed": "播放视频失败",
     "fileNoExist": "文件不存在",
-    "deleteFailed": "删除失败:"
+    "deleteFailed": "删除失败:",
+    "extractProject": "操作完成，已跳过 {count} 个不支持提取为项目的壁纸"
   },
   "setting": {
     "title": "设置",

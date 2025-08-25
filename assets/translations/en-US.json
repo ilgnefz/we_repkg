@@ -24,7 +24,9 @@
     "extractForProject": "Extract as project",
     "playVideo": "  Play video file  ",
     "openFileLocation": "Open file location",
-    "deleteCurrent": "Delete wallpaper"
+    "deleteCurrent": "Delete wallpaper",
+    "wallpaper": "Wallpaper",
+    "project": "Project"
   },
   "dialog": {
     "operationCompleted": "Operation completed",
@@ -39,7 +41,8 @@
     "folderNoExist": "Folder does not exist",
     "playVideoFailed": "Play video failed",
     "fileNoExist": "File does not exist",
-    "deleteFailed": "Delete failed:"
+    "deleteFailed": "Delete failed:",
+    "extractProject": "Operation completed, skipped {count} unsupported wallpapers for project extraction"
   },
   "setting": {
     "title": "Settings",

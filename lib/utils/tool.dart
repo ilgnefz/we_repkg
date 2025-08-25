@@ -55,3 +55,20 @@ String renameFile(String filePath) {
   }
   return newFilePath;
 }
+
+String renameFolder(String folderName) {
+  List<String> illegalCharacter = [
+    '\\',
+    '/',
+    ':',
+    '*',
+    '?',
+    '"',
+    '<',
+    '>',
+    '|',
+  ];
+  String pattern = illegalCharacter.map((c) => RegExp.escape(c)).join('|');
+  String result = folderName.replaceAll(RegExp(pattern), '_');
+  return result;
+}

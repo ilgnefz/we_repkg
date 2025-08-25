@@ -37,6 +37,32 @@ void showCopyToast() {
   );
 }
 
+void showProjectToast(List<String> list) {
+  int length = list.length;
+  String text = length > 0
+      ? tr(
+          AppI10n.dialogExtractProject,
+          namedArgs: {'count': length.toString()},
+        )
+      : tr(AppI10n.dialogOperationCompleted);
+  int index = StorageUtil.getInt(AppKeys.notificationType) ?? 1;
+  if (index == 1) {
+    BotToast.showCustomText(
+      duration: Duration(seconds: 5),
+      toastBuilder: (void Function() cancelFunc) {
+        return ToastView(
+          icon: Icons.check_circle,
+          iconColor: Colors.green,
+          text: text,
+        );
+      },
+    );
+    return;
+  }
+  LocalNotification notification = LocalNotification(title: text);
+  notification.show();
+}
+
 void showExtractSuccessToast() {
   int index = StorageUtil.getInt(AppKeys.notificationType) ?? 1;
   if (index == 1) {

@@ -25,6 +25,8 @@ class AppI10n {
   static const homePlayVideo = 'home.playVideo';
   static const homeOpenFileLocation = 'home.openFileLocation';
   static const homeDeleteCurrent = 'home.deleteCurrent';
+  static const homeWallpaper = 'home.wallpaper';
+  static const homeProject = 'home.project';
 
   // 弹窗相关
   static const dialogOperationCompleted = 'dialog.operationCompleted';
@@ -40,6 +42,7 @@ class AppI10n {
   static const dialogPlayVideoFailed = 'dialog.playVideoFailed';
   static const dialogFileNoExist = 'dialog.fileNoExist';
   static const dialogDeleteFailed = 'dialog.deleteFailed';
+  static const dialogExtractProject = 'dialog.extractProject';
 
   // 设置页面相关
   static const settingTitle = 'setting.title';

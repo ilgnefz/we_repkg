@@ -182,5 +182,22 @@ final loadingTextProvider =
     );
 
 typedef _$LoadingText = AutoDisposeNotifier<String>;
+String _$currentExtractTypeHash() =>
+    r'5ae27e21f3a5463d3714f4c74468256ffa859caf';
+
+/// See also [CurrentExtractType].
+@ProviderFor(CurrentExtractType)
+final currentExtractTypeProvider =
+    AutoDisposeNotifierProvider<CurrentExtractType, ExtractType>.internal(
+      CurrentExtractType.new,
+      name: r'currentExtractTypeProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$currentExtractTypeHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+typedef _$CurrentExtractType = AutoDisposeNotifier<ExtractType>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

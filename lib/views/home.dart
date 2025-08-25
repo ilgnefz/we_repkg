@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:we_repkg/views/title_bar/window_title_bar.dart';
 
-import 'bottom.dart';
+import 'bottom/bottom.dart';
 import 'content/content.dart';
 import 'side.dart';
 import 'top/top.dart';
