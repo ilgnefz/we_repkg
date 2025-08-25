@@ -7,7 +7,7 @@
     "sortSize": "Sort by size",
     "sortUpdate": "Sort by update",
     "extractTo": "Extract to",
-    "extractFolderTip": "Please select a folder",
+    "extractFolderTip": "Please select the target folder for export",
     "browseFolder": "Browse folder",
     "extractAll": "Extract all",
     "extractChecked": "Extract selected",
@@ -25,8 +25,8 @@
     "playVideo": "  Play video file  ",
     "openFileLocation": "Open file location",
     "deleteCurrent": "Delete wallpaper",
-    "wallpaper": "Wallpaper",
-    "project": "Project"
+    "wallpaper": "Wallpaper ",
+    "project": "Project "
   },
   "dialog": {
     "operationCompleted": "Operation completed",
@@ -71,7 +71,7 @@
       "wallpapersPath": "Library",
       "wallpapersPathTip": "Please select the path of wallpapers",
       "projectPath": "Project Path",
-      "projectPathTip": "Please select the path of project",
+      "projectPathTip": "Please select the path for the exported project",
       "useProjectFolder": "Move to the project folder",
       "useProjectFolderTip": "Move the extracted project to the Wallpaper Engine project folder",
       "deleteTransparency": "Delete transparent images",

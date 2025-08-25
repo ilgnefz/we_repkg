@@ -60,6 +60,10 @@ When you unsubscribe from a wallpaper on Wallpaper Engine, it will not be delete
 
 ![02](docs/02.jpg)
 
+You can switch between batch extracting files as wallpapers or projects via the toggle in the bottom-left corner:
+
+![03](docs/03.png)
+
 ## License
 
 [GPL-2.0](LICENSE)

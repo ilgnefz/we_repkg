@@ -16,7 +16,7 @@ class AppConfig {
     await EasyLocalization.ensureInitialized();
     await windowManager.ensureInitialized();
 
-    await StorageUtil.clear();
+    // await StorageUtil.clear();
 
     await localNotifier.setup(
       appName: AppStrings.appName,
