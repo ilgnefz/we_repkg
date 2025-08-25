@@ -34,6 +34,17 @@ class ToolPath extends _$ToolPath {
 }
 
 @riverpod
+class ProjectPath extends _$ProjectPath {
+  @override
+  String? build() => StorageUtil.getString(AppKeys.projectPath);
+  void update(String? value) async {
+    state = value;
+    if (state == null) return;
+    await StorageUtil.setString(AppKeys.projectPath, value!);
+  }
+}
+
+@riverpod
 class ExportPath extends _$ExportPath {
   @override
   String? build() => StorageUtil.getString(AppKeys.exportPath);

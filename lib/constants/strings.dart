@@ -16,4 +16,7 @@ class AppStrings {
   //     r'\SteamLibrary\steamapps\workshop\' + acfName;
   // static const String diskCAcfPath =
   //     r'C:\Program Files (x86)\Steam\steamapps\workshop\' + acfName;
+  // C:\SteamLibrary\steamapps\common\wallpaper_engine\projects\myprojects
+  static const String baseProjectPath =
+      r'common\wallpaper_engine\projects\myprojects';
 }

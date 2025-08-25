@@ -78,6 +78,12 @@ class AppI10n {
       'setting.config.deleteTransparency';
   static const settingConfigDeleteTransparencyTip =
       'setting.config.deleteTransparencyTip';
+  static const settingConfigProjectPath = 'setting.config.projectPath';
+  static const settingConfigProjectPathTip = 'setting.config.projectPathTip';
+  static const settingConfigUseProjectFolder =
+      'setting.config.useProjectFolder';
+  static const settingConfigUseProjectFolderTip =
+      'setting.config.useProjectFolderTip';
 
   // 设置-系统相关
   static const settingSystemLabel = 'setting.system.label';
@@ -113,4 +119,6 @@ class AppI10n {
   static const emptyTip = 'emptyTip';
   static const toolNoExist = 'toolNoExist';
   static const loading = 'loading';
+  static const extractFolderToast = 'extractFolderToast';
+  static const projectFolderToast = 'projectFolderToast';
 }

@@ -40,33 +40,68 @@ Future<List<String>> getWindowsDisks() async {
 }
 
 Future<String?> getWallpaperPath() async {
-  String emptyPath = '';
-  String? wallpaperPath, infoPath;
   List<String> disks = await getWindowsDisks();
-  List<String> tempPaths = [];
-  for (int i = 0; i < disks.length; i++) {
-    if (i == 0) {
-      tempPaths.add('${disks[i]}${AppStrings.systemDiskWallpaperPath}');
-    }
-    tempPaths.add('${disks[i]}${AppStrings.baseWallpaperPath}');
+  if (disks.isEmpty) return null;
+  // 生成所有可能的壁纸路径
+  List<String> tempPaths = _generateWallpaperPaths(disks);
+  // 查找存在的壁纸路径
+  final (wallpaperPath, infoPath) = await _findWallpaperPath(tempPaths);
+  // 处理存储逻辑
+  await _handleStorageLogic(wallpaperPath, infoPath);
+  return wallpaperPath;
+}
+
+/// 生成所有可能的壁纸路径
+List<String> _generateWallpaperPaths(List<String> disks) {
+  final tempPaths = <String>[];
+  // 为第一个磁盘（通常是系统盘）添加特殊路径
+  tempPaths.add('${disks.first}${AppStrings.systemDiskWallpaperPath}');
+  // 为所有磁盘添加基础路径
+  for (final disk in disks) {
+    tempPaths.add('$disk${AppStrings.baseWallpaperPath}');
   }
-  for (String tempPath in tempPaths) {
+  return tempPaths;
+}
+
+/// 查找存在的壁纸路径
+Future<(String?, String?)> _findWallpaperPath(List<String> tempPaths) async {
+  String? wallpaperPath;
+  String? infoPath;
+  String? emptyPath;
+  for (final tempPath in tempPaths) {
     if (await Directory(tempPath).exists()) {
-      emptyPath = tempPath;
-      if (Directory(tempPath).listSync().isNotEmpty) {
+      emptyPath ??= tempPath;
+      // 检查目录是否包含文件
+      final dir = Directory(tempPath);
+      final hasContent = await dir.list().isEmpty == false;
+      if (hasContent) {
         wallpaperPath = tempPath;
-        infoPath = getAcfPath(wallpaperPath);
+        infoPath = getAcfPath(tempPath);
         break;
       }
     }
   }
-  if (wallpaperPath == null && emptyPath.isNotEmpty) wallpaperPath = emptyPath;
+  // 如果没有找到有内容的目录，但有空目录，使用空目录
+  wallpaperPath ??= emptyPath;
+  return (wallpaperPath, infoPath);
+}
+
+/// 处理存储相关的逻辑
+Future<void> _handleStorageLogic(
+  String? wallpaperPath,
+  String? infoPath,
+) async {
   if (infoPath != null) await StorageUtil.setString(AppKeys.infoPath, infoPath);
-  String? before = StorageUtil.getString(AppKeys.wallpaperPathBefore);
-  if (wallpaperPath != null && before == null) {
-    await StorageUtil.setString(AppKeys.wallpaperPathBefore, wallpaperPath);
+  if (wallpaperPath != null) {
+    // 保存首次发现的壁纸路径
+    final before = StorageUtil.getString(AppKeys.wallpaperPathBefore);
+    if (before == null) {
+      await StorageUtil.setString(AppKeys.wallpaperPathBefore, wallpaperPath);
+    }
+    // 设置项目默认路径
+    final projectPath = projectDefaultPath(wallpaperPath);
+    await StorageUtil.setString(AppKeys.projectPath, projectPath);
   }
-  return wallpaperPath;
 }
 
 Future<List<WallpaperInfo>> getAllFile(WidgetRef ref) async {

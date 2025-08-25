@@ -67,6 +67,10 @@
       "toolPathTip": "Please select the path of RePKG.exe",
       "wallpapersPath": "Library",
       "wallpapersPathTip": "Please select the path of wallpapers",
+      "projectPath": "Project Path",
+      "projectPathTip": "Please select the path of project",
+      "useProjectFolder": "Move to the project folder",
+      "useProjectFolderTip": "Move the extracted project to the Wallpaper Engine project folder",
       "deleteTransparency": "Delete transparent images",
       "deleteTransparencyTip": "Images with transparency will be deleted to the recycle bin"
     },
@@ -101,6 +105,8 @@
   },
   "close": "Close",
   "emptyTip": "No data available\nPlease manually select a new wallpaper library folder",
-  "toolNoExist": "Tool does not exist, Please check if the tool path is correct",
-  "loading": "Loading"
+  "toolNoExist": "Tool file not found, please go to Settings to check if the tool path is correct",
+  "loading": "Loading",
+  "extractFolderToast": "Select the output folder for extracted wallpapers; reconfigure at the bottom",
+  "projectFolderToast": "Select the output folder for extracted projects; reconfigure in settings"
 }

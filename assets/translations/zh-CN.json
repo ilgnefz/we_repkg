@@ -67,6 +67,10 @@
       "toolPathTip": "请选择 RePKG.exe 的路径",
       "wallpapersPath": "壁纸路径",
       "wallpapersPathTip": "请选择壁纸的路径",
+      "projectPath": "项目路径",
+      "projectPathTip": "请选择项目的路径",
+      "useProjectFolder": "移动至项目文件夹",
+      "useProjectFolderTip": "将提取的项目移动至 Wallpaper Engine 项目文件夹",
       "deleteTransparency": "删除透明图片",
       "deleteTransparencyTip": "提取的图片中有透明度的图片将会被删除至回收站"
     },
@@ -101,6 +105,8 @@
   },
   "close": "关闭",
   "emptyTip": "未识别到任何数据\n请手动选择一个新的壁纸库文件夹",
-  "toolNoExist": "未找到工具文件，请检查工具路径是否正确",
-  "loading": "正在加载"
+  "toolNoExist": "未找到工具文件，请前往设置查看工具路径是否正确",
+  "loading": "正在加载",
+  "extractFolderToast": "选择提取壁纸后输出的文件夹，可在底部重新配置",
+  "projectFolderToast": "选择提取项目后的输出文件夹，可在设置中重新配置"
 }

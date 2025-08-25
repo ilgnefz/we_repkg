@@ -196,3 +196,13 @@ class DeleteTransparency extends _$DeleteTransparency {
     await StorageUtil.setBool(AppKeys.deleteTransparency, state);
   }
 }
+
+@riverpod
+class UseProjectPath extends _$UseProjectPath {
+  @override
+  bool build() => StorageUtil.getBool(AppKeys.useProjectFolder);
+  void update(bool value) async {
+    state = value;
+    await StorageUtil.setBool(AppKeys.useProjectFolder, state);
+  }
+}

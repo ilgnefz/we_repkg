@@ -22,7 +22,7 @@ final currentStateProvider =
     );
 
 typedef _$CurrentState = AutoDisposeNotifier<RunState>;
-String _$wallpaperPathHash() => r'b00ae666caa2108ab75173c4058f29f165a04cf7';
+String _$wallpaperPathHash() => r'3a2731c53aa4a9c1a1b331685f333c10139919ec';
 
 /// See also [WallpaperPath].
 @ProviderFor(WallpaperPath)
@@ -54,6 +54,22 @@ final toolPathProvider =
     );
 
 typedef _$ToolPath = AutoDisposeNotifier<String?>;
+String _$projectPathHash() => r'085f435dd97ea2362873b41da52f40ac23779025';
+
+/// See also [ProjectPath].
+@ProviderFor(ProjectPath)
+final projectPathProvider =
+    AutoDisposeNotifierProvider<ProjectPath, String?>.internal(
+      ProjectPath.new,
+      name: r'projectPathProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$projectPathHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+typedef _$ProjectPath = AutoDisposeNotifier<String?>;
 String _$exportPathHash() => r'6903ac90bbd8b6d8b7488e1a86f585e3fb535d84';
 
 /// See also [ExportPath].

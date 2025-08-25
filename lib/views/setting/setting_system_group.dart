@@ -18,9 +18,9 @@ class SettingSystemGroup extends ConsumerWidget {
       children: [
         SettingLabel(tr(AppI10n.settingSystemLabel)),
         NotificationSwitch(),
-        SizedBox(height: 4),
+        SizedBox(height: 8),
         LanguageSwitch(),
-        SizedBox(height: 4),
+        SizedBox(height: 8),
         ThemeSwitch(),
       ],
     );

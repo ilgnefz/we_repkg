@@ -17,12 +17,19 @@ import 'base.dart';
 import 'toast.dart';
 
 Future<void> extractProject(WidgetRef ref, WallpaperInfo wallpaper) async {
-  if (!await checkExportPath(ref)) return;
-  String rePKGPath = ref.watch(toolPathProvider)!;
+  bool useProjectPath = ref.watch(useProjectPathProvider);
+  if (useProjectPath) {
+    if (!await checkProjectPath(ref)) return;
+  } else {
+    if (!await checkExportPath(ref)) return;
+  }
+  String? rePKGPath = ref.watch(toolPathProvider);
   if (!await toolExist(rePKGPath)) return showToolNoExistToast();
   changeLoadingText(ref, tr(AppI10n.dialogProcessingWallpaper));
   final cancel = showLoadingView([wallpaper]);
-  String outPath = ref.watch(exportPathProvider)!;
+  String outPath = useProjectPath
+      ? ref.watch(projectPathProvider)!
+      : ref.watch(exportPathProvider)!;
   if (ref.watch(useTitleNameProvider)) {
     outPath = path.join(outPath, wallpaper.title);
   } else {
@@ -54,7 +61,11 @@ Future<void> extractProject(WidgetRef ref, WallpaperInfo wallpaper) async {
     ].cast<String>().toList();
     String fullCommand = '$rePKGPath ${args.join(' ')}';
     debugPrint('执行完整命令: $fullCommand');
-    ProcessResult result = await Process.run(rePKGPath, args, runInShell: true);
+    ProcessResult result = await Process.run(
+      rePKGPath!,
+      args,
+      runInShell: true,
+    );
     int exitCode = result.exitCode;
     String stdout = result.stdout;
     String stderr = result.stderr;
@@ -85,7 +96,7 @@ Future<void> extractProject(WidgetRef ref, WallpaperInfo wallpaper) async {
 
 Future<void> extractCurrent(WidgetRef ref, WallpaperInfo wallpaper) async {
   if (!await checkExportPath(ref)) return;
-  String rePKGPath = ref.watch(toolPathProvider)!;
+  String? rePKGPath = ref.watch(toolPathProvider);
   if (!await toolExist(rePKGPath)) return showToolNoExistToast();
   List<ErrorInfo> errList = [];
   String target = wallpaper.target;
@@ -113,7 +124,7 @@ Future<void> _extractWallpapers(
   List<WallpaperInfo> wallpapers,
 ) async {
   if (!await checkExportPath(ref)) return;
-  String rePKGPath = ref.watch(toolPathProvider)!;
+  String? rePKGPath = ref.watch(toolPathProvider);
   if (!await toolExist(rePKGPath)) return showToolNoExistToast();
   List<ErrorInfo> errList = [];
   String outPath = ref.watch(exportPathProvider)!;

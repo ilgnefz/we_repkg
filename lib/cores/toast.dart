@@ -11,6 +11,19 @@ import 'package:we_repkg/views/states/error.dart';
 import 'package:we_repkg/views/states/loading.dart';
 import 'package:we_repkg/widgets/toast.dart';
 
+void showSelectFolderToast(String message) {
+  BotToast.showCustomText(
+    duration: Duration(seconds: 5),
+    toastBuilder: (void Function() cancelFunc) {
+      return ToastView(
+        icon: Icons.lightbulb_circle_rounded,
+        iconColor: Colors.blue,
+        text: message,
+      );
+    },
+  );
+}
+
 void showCopyToast() {
   BotToast.showCustomText(
     duration: Duration(seconds: 3),
@@ -47,7 +60,7 @@ void showExtractSuccessToast() {
 
 void showToolNoExistToast() {
   BotToast.showCustomText(
-    duration: Duration(seconds: 3),
+    duration: Duration(seconds: 5),
     toastBuilder: (void Function() cancelFunc) {
       return ToastView(
         icon: Icons.warning_rounded,
@@ -60,7 +73,7 @@ void showToolNoExistToast() {
 
 void showErrorToast(String message) {
   BotToast.showCustomText(
-    duration: Duration(seconds: 3),
+    duration: Duration(seconds: 5),
     toastBuilder: (void Function() cancelFunc) {
       return ToastView(
         icon: Icons.warning_rounded,

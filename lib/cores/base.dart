@@ -21,6 +21,7 @@ import 'toast.dart';
 import 'wallpaper.dart';
 
 Future<bool> setExportPath(WidgetRef ref) async {
+  showSelectFolderToast(tr(AppI10n.extractFolderToast));
   final String? exportPath = await getDirectoryPath();
   if (exportPath != null) {
     ref.read(exportPathProvider.notifier).update(exportPath);
@@ -59,12 +60,29 @@ Future<void> refreshToolPath(WidgetRef ref) async {
   ref.read(toolVersionProvider.notifier).update(AppStrings.repkgVersion);
 }
 
+Future<bool> setProjectPath(WidgetRef ref) async {
+  showSelectFolderToast(tr(AppI10n.projectFolderToast));
+  String? projectPath = await getDirectoryPath();
+  if (projectPath != null) {
+    ref.read(projectPathProvider.notifier).update(projectPath);
+    return true;
+  }
+  return false;
+}
+
+void refreshProjectPath(WidgetRef ref) {
+  String? wallpaperPath = StorageUtil.getString(AppKeys.wallpaperPath);
+  if (wallpaperPath != null) {
+    String projectPath = projectDefaultPath(wallpaperPath);
+    ref.read(projectPathProvider.notifier).update(projectPath);
+  }
+}
+
 Future<void> setWallpaperPath(WidgetRef ref) async {
   final String? wallpaperPath = await getDirectoryPath();
   if (wallpaperPath != null) {
     ref.read(selectedWallpaperProvider.notifier).update(null);
     ref.read(wallpaperPathProvider.notifier).update(wallpaperPath);
-    await StorageUtil.setString(AppKeys.wallpaperPath, wallpaperPath);
     String infoPath = path.join(
       path.dirname(path.dirname(wallpaperPath)),
       AppStrings.acfName,
@@ -113,6 +131,12 @@ Future<void> playVideo(WallpaperInfo wallpaper) async {
 Future<bool> checkExportPath(WidgetRef ref) async {
   String? exportPath = ref.watch(exportPathProvider);
   if (exportPath == null) return await setExportPath(ref);
+  return true;
+}
+
+Future<bool> checkProjectPath(WidgetRef ref) async {
+  String? projectPath = ref.watch(projectPathProvider);
+  if (projectPath == null) return await setProjectPath(ref);
   return true;
 }
 

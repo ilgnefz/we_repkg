@@ -7,12 +7,16 @@ import 'package:we_repkg/constants/keys.dart';
 import 'package:we_repkg/constants/strings.dart';
 import 'package:we_repkg/utils/storage.dart';
 
-String getToolPath() {
+String? getToolPath() {
   String? toolPath = StorageUtil.getString(AppKeys.toolPath);
   if (toolPath == null) {
     String appPath = Platform.resolvedExecutable;
     String folder = path.dirname(appPath);
     toolPath = path.join(folder, 'RePKG.exe');
+    if (!File(toolPath).existsSync()) {
+      toolPath = null;
+      StorageUtil.setString(AppKeys.toolVersion, '');
+    }
   }
   return toolPath;
 }
@@ -52,7 +56,10 @@ IconData getThemeModeIcon(ThemeMode mode) {
   }
 }
 
-Future<bool> toolExist(String toolPath) async => await File(toolPath).exists();
+Future<bool> toolExist(String? toolPath) async {
+  if (toolPath == null) return false;
+  return await File(toolPath).exists();
+}
 
 Future<bool> hasPngTransparency(String imagePath) async {
   // if (!imagePath.toLowerCase().endsWith('.png')) return false;
@@ -90,3 +97,8 @@ bool _imageHasTransparentPixels(img.Image image) {
 
 String getAcfPath(String filePath) =>
     path.join(path.dirname(path.dirname(filePath)), AppStrings.acfName);
+
+String projectDefaultPath(String filePath) {
+  String workshopPath = path.dirname(path.dirname(filePath));
+  return path.join(path.dirname(workshopPath), AppStrings.baseProjectPath);
+}

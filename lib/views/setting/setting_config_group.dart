@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:we_repkg/constants/i10n.dart';
 import 'package:we_repkg/provider/setting.dart';
+import 'package:we_repkg/views/setting/project_path_input.dart';
 import 'package:we_repkg/widgets/double_title_checked.dart';
 import 'package:we_repkg/widgets/setting_checkbox.dart';
 import 'package:we_repkg/widgets/setting_label.dart';
@@ -38,6 +39,13 @@ class SettingConfigGroup extends ConsumerWidget {
               ref.read(useTitleNameProvider.notifier).update(value!),
         ),
         DoubleTitleChecked(
+          value: ref.watch(deleteTransparencyProvider),
+          onChanged: (value) =>
+              ref.read(deleteTransparencyProvider.notifier).update(value!),
+          title: tr(AppI10n.settingConfigDeleteTransparency),
+          subTitle: tr(AppI10n.settingConfigDeleteTransparencyTip),
+        ),
+        DoubleTitleChecked(
           value: ref.watch(replaceFileProvider),
           onChanged: (value) =>
               ref.read(replaceFileProvider.notifier).update(value!),
@@ -45,16 +53,18 @@ class SettingConfigGroup extends ConsumerWidget {
           subTitle: tr(AppI10n.settingConfigReplaceExistFileTip),
         ),
         DoubleTitleChecked(
-          value: ref.watch(deleteTransparencyProvider),
+          value: ref.watch(useProjectPathProvider),
           onChanged: (value) =>
-              ref.read(deleteTransparencyProvider.notifier).update(value!),
-          title: tr(AppI10n.settingConfigDeleteTransparency),
-          subTitle: tr(AppI10n.settingConfigDeleteTransparencyTip),
+              ref.read(useProjectPathProvider.notifier).update(value!),
+          title: tr(AppI10n.settingConfigUseProjectFolder),
+          subTitle: tr(AppI10n.settingConfigUseProjectFolderTip),
         ),
         SizedBox(height: 8),
         ToolPathInput(),
         SizedBox(height: 4),
         WallpaperPathInput(),
+        SizedBox(height: 4),
+        ProjectPathInput(),
       ],
     );
   }
