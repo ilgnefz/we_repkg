@@ -206,3 +206,13 @@ class UseProjectPath extends _$UseProjectPath {
     await StorageUtil.setBool(AppKeys.useProjectFolder, state);
   }
 }
+
+@riverpod
+class GetAcfInfo extends _$GetAcfInfo {
+  @override
+  bool build() => StorageUtil.getNullBool(AppKeys.getAcfInfo) ?? true;
+  void update(bool value) async {
+    state = value;
+    await StorageUtil.setBool(AppKeys.getAcfInfo, state);
+  }
+}

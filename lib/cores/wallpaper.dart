@@ -132,6 +132,8 @@ Future<List<WallpaperInfo>> getAllFile(WidgetRef ref) async {
 
 Future<List<AcfInfo>> getWallpaperInfo() async {
   List<AcfInfo> acfInfoList = [];
+  bool getInfo = StorageUtil.getNullBool(AppKeys.getAcfInfo) ?? true;
+  if (!getInfo) return acfInfoList;
   String? infoPath = StorageUtil.getString(AppKeys.infoPath);
   if (infoPath == null) return acfInfoList;
   Map<String, dynamic> content = await parseAcf(infoPath);
@@ -157,9 +159,11 @@ Future<List<WallpaperInfo>> getAllWallpaper(
   DateTime? earliestDate;
   // 创建一个Map以便快速查找AcfInfo
   Map<String, AcfInfo> acfInfoMap = {};
+  print('acfInfoList: ${acfInfoList.length}');
   for (var acfInfo in acfInfoList) {
     acfInfoMap[acfInfo.id] = acfInfo;
   }
+  print('acfInfoMap: ${acfInfoMap.length}');
   for (FileSystemEntity folder in dirList) {
     if (folder is Directory) {
       String id = path.basename(folder.path);
@@ -203,7 +207,7 @@ Future<List<WallpaperInfo>> getAllWallpaper(
         } else {
           debugPrint('$id 没有获取到信息');
           size = await getSize(target);
-          updateTime = (createTime.millisecondsSinceEpoch / 1000).truncate();
+          updateTime = null;
         }
         wallpapers.add(
           WallpaperInfo(

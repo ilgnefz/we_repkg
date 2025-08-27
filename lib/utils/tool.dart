@@ -72,3 +72,9 @@ String renameFolder(String folderName) {
   String result = folderName.replaceAll(RegExp(pattern), '_');
   return result;
 }
+
+String formattedTime(int? time) {
+  if (time == null) return '';
+  DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(time * 1000);
+  return dateTime.toString().substring(0, 19);
+}

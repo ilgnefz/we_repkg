@@ -75,7 +75,9 @@
       "useProjectFolder": "Move to the project folder",
       "useProjectFolderTip": "Move the extracted project to the Wallpaper Engine project folder",
       "deleteTransparency": "Delete transparent images",
-      "deleteTransparencyTip": "Images with transparency will be deleted to the recycle bin"
+      "deleteTransparencyTip": "Images with transparency will be deleted to the recycle bin",
+      "getAcfInfo": "Get acf file info",
+      "getAcfInfoTip": "Get the last update time of the wallpaper"
     },
     "system": {
       "label": "System",

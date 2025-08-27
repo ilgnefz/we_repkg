@@ -262,5 +262,21 @@ final useProjectPathProvider =
     );
 
 typedef _$UseProjectPath = AutoDisposeNotifier<bool>;
+String _$getAcfInfoHash() => r'65145677e36e680abeb551de4de0080ae018bfa9';
+
+/// See also [GetAcfInfo].
+@ProviderFor(GetAcfInfo)
+final getAcfInfoProvider =
+    AutoDisposeNotifierProvider<GetAcfInfo, bool>.internal(
+      GetAcfInfo.new,
+      name: r'getAcfInfoProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$getAcfInfoHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+typedef _$GetAcfInfo = AutoDisposeNotifier<bool>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

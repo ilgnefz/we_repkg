@@ -34,7 +34,7 @@ Future<int> getSize(String filePath) async {
     }
   } else {
     File file = File(filePath);
-    size = await file.length();
+    if (await file.exists()) size = await file.length();
   }
   return size;
 }

@@ -5,7 +5,7 @@ class WallpaperInfo {
   List<String> tags;
   String previews;
   String type;
-  int updateTime;
+  int? updateTime;
   DateTime createTime;
   String target;
   String folder;

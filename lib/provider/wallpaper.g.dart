@@ -26,7 +26,7 @@ final checkedWallpaperListProvider =
 // ignore: unused_element
 typedef CheckedWallpaperListRef = AutoDisposeProviderRef<List<WallpaperInfo>>;
 String _$filterWallpaperListHash() =>
-    r'd7315a6a9fe729bcd540c19f1ba3ba1f663a55f9';
+    r'4c26dd9ba409b12f592c9801082cfbc2b785ef94';
 
 /// See also [filterWallpaperList].
 @ProviderFor(filterWallpaperList)

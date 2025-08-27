@@ -26,6 +26,6 @@ class AppKeys {
   static const String deleteTransparency = 'deleteTransparency';
   static const String useProjectFolder = 'useProjectFolder';
   static const String projectPath = 'projectPath';
-
   static const String extractType = 'extractType';
+  static const String getAcfInfo = 'getAcfInfo';
 }

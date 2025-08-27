@@ -130,7 +130,7 @@ List<WallpaperInfo> filterWallpaperList(Ref ref) {
       list.sort((a, b) => b.size.compareTo(a.size));
       break;
     case SortType.update:
-      list.sort((a, b) => b.updateTime.compareTo(a.updateTime));
+      list.sort((a, b) => b.updateTime!.compareTo(a.updateTime!));
       break;
   }
   if (ref.watch(sortAscendingProvider)) list = list.reversed.toList();

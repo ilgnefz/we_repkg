@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:we_repkg/constants/i10n.dart';
+import 'package:we_repkg/cores/base.dart';
 import 'package:we_repkg/provider/setting.dart';
 import 'package:we_repkg/views/setting/project_path_input.dart';
 import 'package:we_repkg/widgets/double_title_checked.dart';
@@ -51,6 +52,15 @@ class SettingConfigGroup extends ConsumerWidget {
               ref.read(replaceFileProvider.notifier).update(value!),
           title: tr(AppI10n.settingConfigReplaceExistFile),
           subTitle: tr(AppI10n.settingConfigReplaceExistFileTip),
+        ),
+        DoubleTitleChecked(
+          value: ref.watch(getAcfInfoProvider),
+          onChanged: (value) {
+            ref.read(getAcfInfoProvider.notifier).update(value!);
+            refreshWallpaperPath(ref);
+          },
+          title: tr(AppI10n.settingConfigGetAcfInfo),
+          subTitle: tr(AppI10n.settingConfigGetAcfInfoTip),
         ),
         DoubleTitleChecked(
           value: ref.watch(useProjectPathProvider),

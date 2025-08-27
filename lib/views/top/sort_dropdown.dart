@@ -34,17 +34,23 @@ class _TopSortState extends ConsumerState<SortDropdown> {
             context,
           ).dropdownMenuTheme.inputDecorationTheme?.fillColor,
           focusColor: Colors.transparent,
-          items: SortType.values.map((e) {
-            return DropdownMenuItem(
-              value: e,
-              child: Text(
-                e.label,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodySmall?.copyWith(fontSize: 13),
-              ),
-            );
-          }).toList(),
+          items: SortType.values
+              .map((e) {
+                if (!ref.watch(getAcfInfoProvider) && e == SortType.update) {
+                  return null;
+                }
+                return DropdownMenuItem(
+                  value: e,
+                  child: Text(
+                    e.label,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(fontSize: 13),
+                  ),
+                );
+              })
+              .whereType<DropdownMenuItem<SortType>>()
+              .toList(),
           onChanged: (value) {
             ref.read(wallpaperSortTypeProvider.notifier).update(value!);
             focusNode.unfocus();

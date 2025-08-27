@@ -75,7 +75,9 @@
       "useProjectFolder": "移动至项目文件夹",
       "useProjectFolderTip": "将提取的项目移动至 Wallpaper Engine 项目文件夹",
       "deleteTransparency": "删除透明图片",
-      "deleteTransparencyTip": "提取的图片中有透明度的图片将会被删除至回收站"
+      "deleteTransparencyTip": "提取的图片中有透明度的图片将会被删除至回收站",
+      "getAcfInfo": "获取 acf 文件信息",
+      "getAcfInfoTip": "用来获取壁纸最后的更新时间"
     },
     "system": {
       "label": "系统",

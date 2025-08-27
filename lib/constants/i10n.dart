@@ -87,6 +87,8 @@ class AppI10n {
       'setting.config.useProjectFolder';
   static const settingConfigUseProjectFolderTip =
       'setting.config.useProjectFolderTip';
+  static const settingConfigGetAcfInfo = 'setting.config.getAcfInfo';
+  static const settingConfigGetAcfInfoTip = 'setting.config.getAcfInfoTip';
 
   // 设置-系统相关
   static const settingSystemLabel = 'setting.system.label';
