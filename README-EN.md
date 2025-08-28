@@ -1,6 +1,6 @@
-<p align="center"><img alt="WeRePkg" src="docs/logo.png" width="480px"></p>
+<p align="center"><img alt="WeRePKG" src="docs/logo.png" width="480px"></p>
 
-<div align="center"><h2>Wallpaper Engine Wallpaper Extraction Tool, Developed Based on the Open-Source Project <a href="https://github.com/notscuffed/repkg">RePkg</a></h2></div>
+<div align="center"><h2>Wallpaper Engine Wallpaper Extraction Tool, Developed Based on the Open-Source Project <a href="https://github.com/notscuffed/repkg">RePKG</a></h2></div>
 
 [简体中文](README.md) | English
 

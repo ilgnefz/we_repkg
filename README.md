@@ -1,6 +1,6 @@
-<p align="center"><img alt="WeRePkg" src="docs/logo.png" width="480px"></p>
+<p align="center"><img alt="WeRePKG" src="docs/logo.png" width="480px"></p>
 
-<div align="center"><h2>Wallpaper Engine 壁纸提取工具，基于开源项目 <a href="https://github.com/notscuffed/repkg">RePkg</a> 开发</h2></div>
+<div align="center"><h2>Wallpaper Engine 壁纸提取工具，基于开源项目 <a href="https://github.com/notscuffed/repkg">RePKG</a> 开发</h2></div>
 
 简体中文 | [English](README-EN.md)
 
