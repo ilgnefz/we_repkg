@@ -58,7 +58,7 @@ Before extraction, you can configure the export settings in the "Settings" menu:
 
 When you unsubscribe from a wallpaper on Wallpaper Engine, it will not be deleted immediately. You can manually delete it to the Recycle Bin within this tool:
 
-![02](docs/02.jpg)
+![02](docs/02.png)
 
 You can switch between batch extracting files as wallpapers or projects via the toggle in the bottom-left corner:
 
