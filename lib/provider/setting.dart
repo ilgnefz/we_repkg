@@ -208,11 +208,41 @@ class UseProjectPath extends _$UseProjectPath {
 }
 
 @riverpod
-class GetAcfInfo extends _$GetAcfInfo {
+class UseAcfInfo extends _$UseAcfInfo {
   @override
-  bool build() => StorageUtil.getNullBool(AppKeys.getAcfInfo) ?? true;
+  bool build() => StorageUtil.getNullBool(AppKeys.useAcfInfo) ?? true;
   void update(bool value) async {
     state = value;
-    await StorageUtil.setBool(AppKeys.getAcfInfo, state);
+    await StorageUtil.setBool(AppKeys.useAcfInfo, state);
+  }
+}
+
+@riverpod
+class UpdateProjectPath extends _$UpdateProjectPath {
+  @override
+  bool build() => StorageUtil.getNullBool(AppKeys.updateProjectPath) ?? true;
+  void update(bool value) async {
+    state = value;
+    await StorageUtil.setBool(AppKeys.updateProjectPath, state);
+  }
+}
+
+@riverpod
+class UpdateAcfPath extends _$UpdateAcfPath {
+  @override
+  bool build() => StorageUtil.getNullBool(AppKeys.updateAcfPath) ?? true;
+  void update(bool value) async {
+    state = value;
+    await StorageUtil.setBool(AppKeys.updateAcfPath, state);
+  }
+}
+
+@riverpod
+class MaximizeOpen extends _$MaximizeOpen {
+  @override
+  bool build() => StorageUtil.getBool(AppKeys.maximizeOpen);
+  void update(bool value) async {
+    state = value;
+    await StorageUtil.setBool(AppKeys.maximizeOpen, state);
   }
 }

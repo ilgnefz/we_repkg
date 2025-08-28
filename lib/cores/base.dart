@@ -84,22 +84,55 @@ Future<void> setWallpaperPath(WidgetRef ref) async {
   if (wallpaperPath != null) {
     ref.read(selectedWallpaperProvider.notifier).update(null);
     ref.read(wallpaperPathProvider.notifier).update(wallpaperPath);
-    String infoPath = path.join(
-      path.dirname(path.dirname(wallpaperPath)),
-      AppStrings.acfName,
-    );
-    await StorageUtil.setString(AppKeys.infoPath, infoPath);
+    updateOtherFolder(ref, wallpaperPath);
     await refreshWallpaper(ref);
   }
 }
 
 Future<void> refreshWallpaperPath(WidgetRef ref) async {
   // String? before = StorageUtil.getString(AppKeys.wallpaperPathBefore);
+  // await StorageUtil.remove(AppKeys.acfPath);
   String? wallpaperPath = await getWallpaperPath();
   if (wallpaperPath != null) {
     ref.read(wallpaperPathProvider.notifier).update(wallpaperPath);
+    updateOtherFolder(ref, wallpaperPath);
   }
   await refreshWallpaper(ref);
+}
+
+void updateOtherFolder(WidgetRef ref, String wallpaperPath) {
+  String? projectPath = StorageUtil.getString(AppKeys.projectPath);
+  String? acfPath = StorageUtil.getString(AppKeys.acfPath);
+  if (ref.watch(updateProjectPathProvider) || projectPath == null) {
+    ref
+        .read(projectPathProvider.notifier)
+        .update(projectDefaultPath(wallpaperPath));
+  }
+  if (ref.watch(updateAcfPathProvider) || acfPath == null) {
+    if (acfPath != null) {
+      StorageUtil.remove(AppKeys.acfPath);
+    }
+    ref.read(acfPathProvider.notifier).update(getAcfPath(wallpaperPath));
+  }
+}
+
+Future<void> setAcfPath(WidgetRef ref) async {
+  final xType = XTypeGroup(
+    label: 'appworkshop_431960.acf',
+    extensions: ['acf'],
+  );
+  final XFile? file = await openFile(acceptedTypeGroups: [xType]);
+  if (file != null) {
+    ref.read(acfPathProvider.notifier).update(file.path);
+    // await StorageUtil.setString(AppKeys.acfPath, file.path);
+    refreshWallpaperPath(ref);
+  }
+}
+
+Future<void> refreshAcfPath(WidgetRef ref) async {
+  await StorageUtil.remove(AppKeys.acfPath);
+  ref.read(acfPathProvider.notifier).update(getAcfPath());
+  refreshWallpaperPath(ref);
 }
 
 Future<void> browseFolder(WidgetRef ref) async {

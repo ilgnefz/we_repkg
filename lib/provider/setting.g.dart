@@ -262,21 +262,69 @@ final useProjectPathProvider =
     );
 
 typedef _$UseProjectPath = AutoDisposeNotifier<bool>;
-String _$getAcfInfoHash() => r'65145677e36e680abeb551de4de0080ae018bfa9';
+String _$useAcfInfoHash() => r'17684ecc15b41ee36b76b85125874c3c853d2597';
 
-/// See also [GetAcfInfo].
-@ProviderFor(GetAcfInfo)
-final getAcfInfoProvider =
-    AutoDisposeNotifierProvider<GetAcfInfo, bool>.internal(
-      GetAcfInfo.new,
-      name: r'getAcfInfoProvider',
+/// See also [UseAcfInfo].
+@ProviderFor(UseAcfInfo)
+final useAcfInfoProvider =
+    AutoDisposeNotifierProvider<UseAcfInfo, bool>.internal(
+      UseAcfInfo.new,
+      name: r'useAcfInfoProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
           ? null
-          : _$getAcfInfoHash,
+          : _$useAcfInfoHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
-typedef _$GetAcfInfo = AutoDisposeNotifier<bool>;
+typedef _$UseAcfInfo = AutoDisposeNotifier<bool>;
+String _$updateProjectPathHash() => r'4189dd32b479ff50ad83b16e9b667cbfe5c9b47a';
+
+/// See also [UpdateProjectPath].
+@ProviderFor(UpdateProjectPath)
+final updateProjectPathProvider =
+    AutoDisposeNotifierProvider<UpdateProjectPath, bool>.internal(
+      UpdateProjectPath.new,
+      name: r'updateProjectPathProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$updateProjectPathHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+typedef _$UpdateProjectPath = AutoDisposeNotifier<bool>;
+String _$updateAcfPathHash() => r'0812b0623a4a1d8791f64f457fdd8bc529635763';
+
+/// See also [UpdateAcfPath].
+@ProviderFor(UpdateAcfPath)
+final updateAcfPathProvider =
+    AutoDisposeNotifierProvider<UpdateAcfPath, bool>.internal(
+      UpdateAcfPath.new,
+      name: r'updateAcfPathProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$updateAcfPathHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+typedef _$UpdateAcfPath = AutoDisposeNotifier<bool>;
+String _$maximizeOpenHash() => r'e04a3c48b30bcc5d529e897c0b28587cad4c0064';
+
+/// See also [MaximizeOpen].
+@ProviderFor(MaximizeOpen)
+final maximizeOpenProvider =
+    AutoDisposeNotifierProvider<MaximizeOpen, bool>.internal(
+      MaximizeOpen.new,
+      name: r'maximizeOpenProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$maximizeOpenHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+typedef _$MaximizeOpen = AutoDisposeNotifier<bool>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

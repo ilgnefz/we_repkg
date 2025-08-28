@@ -24,6 +24,10 @@ extension SortTypeExtension on SortType {
         return tr(AppI10n.homeSortUpdate);
     }
   }
+
+  bool get isTime => this == SortType.time;
+  bool get isSize => this == SortType.size;
+  bool get isUpdate => this == SortType.update;
 }
 
 enum LanguageType { en, zh }

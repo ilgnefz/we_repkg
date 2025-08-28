@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:we_repkg/constants/i10n.dart';
 import 'package:we_repkg/cores/base.dart';
+import 'package:we_repkg/models/enums.dart';
 import 'package:we_repkg/provider/setting.dart';
+import 'package:we_repkg/views/setting/acf_path_input.dart';
 import 'package:we_repkg/views/setting/project_path_input.dart';
 import 'package:we_repkg/widgets/double_title_checked.dart';
 import 'package:we_repkg/widgets/setting_checkbox.dart';
@@ -21,6 +23,12 @@ class SettingConfigGroup extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SettingLabel(tr(AppI10n.settingConfigLabel)),
+        SettingCheckbox(
+          label: tr(AppI10n.settingConfigMaximizeOpen),
+          value: ref.watch(maximizeOpenProvider),
+          onChanged: (value) =>
+              ref.read(maximizeOpenProvider.notifier).update(value!),
+        ),
         SettingCheckbox(
           label: tr(AppI10n.settingConfigOnlySaveImage),
           value: ref.watch(onlySaveImageProvider),
@@ -54,9 +62,14 @@ class SettingConfigGroup extends ConsumerWidget {
           subTitle: tr(AppI10n.settingConfigReplaceExistFileTip),
         ),
         DoubleTitleChecked(
-          value: ref.watch(getAcfInfoProvider),
+          value: ref.watch(useAcfInfoProvider),
           onChanged: (value) {
-            ref.read(getAcfInfoProvider.notifier).update(value!);
+            ref.read(useAcfInfoProvider.notifier).update(value!);
+            if (!value && ref.watch(wallpaperSortTypeProvider).isUpdate) {
+              ref
+                  .read(wallpaperSortTypeProvider.notifier)
+                  .update(SortType.time);
+            }
             refreshWallpaperPath(ref);
           },
           title: tr(AppI10n.settingConfigGetAcfInfo),
@@ -69,12 +82,28 @@ class SettingConfigGroup extends ConsumerWidget {
           title: tr(AppI10n.settingConfigUseProjectFolder),
           subTitle: tr(AppI10n.settingConfigUseProjectFolderTip),
         ),
+        DoubleTitleChecked(
+          value: ref.watch(updateProjectPathProvider),
+          onChanged: (value) =>
+              ref.read(updateProjectPathProvider.notifier).update(value!),
+          title: tr(AppI10n.settingConfigAutoUpdateProjectPath),
+          subTitle: tr(AppI10n.settingConfigAutoUpdateProjectPathTip),
+        ),
+        DoubleTitleChecked(
+          value: ref.watch(updateAcfPathProvider),
+          onChanged: (value) =>
+              ref.read(updateAcfPathProvider.notifier).update(value!),
+          title: tr(AppI10n.settingConfigAutoUpdateAcfPath),
+          subTitle: tr(AppI10n.settingConfigAutoUpdateAcfPathTip),
+        ),
         SizedBox(height: 8),
         ToolPathInput(),
         SizedBox(height: 4),
         WallpaperPathInput(),
         SizedBox(height: 4),
         ProjectPathInput(),
+        SizedBox(height: 4),
+        AcfPathInput(),
       ],
     );
   }

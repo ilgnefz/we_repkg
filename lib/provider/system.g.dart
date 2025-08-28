@@ -38,7 +38,7 @@ final wallpaperPathProvider =
     );
 
 typedef _$WallpaperPath = AutoDisposeNotifier<String?>;
-String _$toolPathHash() => r'9fe6c0204e0fa16031d71e4c345333ccd03b0d45';
+String _$toolPathHash() => r'e0fb153365576e868593ef20a24a16cd84f3ffc0';
 
 /// See also [ToolPath].
 @ProviderFor(ToolPath)
@@ -70,7 +70,7 @@ final projectPathProvider =
     );
 
 typedef _$ProjectPath = AutoDisposeNotifier<String?>;
-String _$exportPathHash() => r'6903ac90bbd8b6d8b7488e1a86f585e3fb535d84';
+String _$exportPathHash() => r'a6d437cc35e3f9e8e6b924ce2a0018061f96dd59';
 
 /// See also [ExportPath].
 @ProviderFor(ExportPath)
@@ -199,5 +199,20 @@ final currentExtractTypeProvider =
     );
 
 typedef _$CurrentExtractType = AutoDisposeNotifier<ExtractType>;
+String _$acfPathHash() => r'7fba3e41d8fa7313e9346ca9ad10f25b30c38c9b';
+
+/// See also [AcfPath].
+@ProviderFor(AcfPath)
+final acfPathProvider = AutoDisposeNotifierProvider<AcfPath, String?>.internal(
+  AcfPath.new,
+  name: r'acfPathProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$acfPathHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$AcfPath = AutoDisposeNotifier<String?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -59,23 +59,34 @@ pub async fn has_png_transparency_batch_rust(file_paths: Vec<String>) -> Vec<Res
 
 #[flutter_rust_bridge::frb]
 pub async fn delete_transparent_pngs_rust(file_paths: Vec<String>) -> Vec<String> {
-    let mut errors = Vec::new();
+    use tokio::task::JoinSet;
+    use std::sync::{Arc, Mutex};
+
+    let errors = Arc::new(Mutex::new(Vec::new()));
+    let mut tasks = JoinSet::new();
+
     for file_path in file_paths {
-        match has_png_transparency_rust(file_path.clone()).await {
-            Ok(true) => {
-                // 有透明像素，删除文件
-                if let Err(e) = trash::delete(&file_path) {
-                    errors.push(format!("Failed to delete transparent PNG: {}", e));
+        let errors_clone = errors.clone();
+        tasks.spawn(async move {
+            match has_png_transparency_rust(file_path.clone()).await {
+                Ok(true) => {
+                    if let Err(e) = trash::delete(&file_path) {
+                        errors_clone.lock().unwrap().push(format!("Failed to delete transparent PNG: {}", e));
+                    }
+                }
+                Ok(false) => {}
+                Err(e) => {
+                    errors_clone.lock().unwrap().push(format!("Transparency check failed: {}", e));
                 }
             }
-            Ok(false) => {
-                // 没有透明像素，不删除，不返回任何信息
-            }
-            Err(e) => {
-                // 检测失败
-                errors.push(format!("Transparency check failed: {}", e));
-            }
+        });
+    }
+
+    while let Some(result) = tasks.join_next().await {
+        if let Err(e) = result {
+            errors.lock().unwrap().push(format!("Task execution error: {}", e));
         }
     }
-    errors
+
+    Arc::try_unwrap(errors).unwrap().into_inner().unwrap()
 }

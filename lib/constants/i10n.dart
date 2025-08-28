@@ -89,6 +89,17 @@ class AppI10n {
       'setting.config.useProjectFolderTip';
   static const settingConfigGetAcfInfo = 'setting.config.getAcfInfo';
   static const settingConfigGetAcfInfoTip = 'setting.config.getAcfInfoTip';
+  static const settingConfigAcfPath = 'setting.config.acfPath';
+  static const settingConfigAcfPathTip = 'setting.config.acfPathTip';
+  static const settingConfigAutoUpdateProjectPath =
+      'setting.config.autoUpdateProjectPath';
+  static const settingConfigAutoUpdateProjectPathTip =
+      'setting.config.autoUpdateProjectPathTip';
+  static const settingConfigAutoUpdateAcfPath =
+      'setting.config.autoUpdateAcfPath';
+  static const settingConfigAutoUpdateAcfPathTip =
+      'setting.config.autoUpdateAcfPathTip';
+  static const settingConfigMaximizeOpen = 'setting.config.maximizeOpen';
 
   // 设置-系统相关
   static const settingSystemLabel = 'setting.system.label';
@@ -123,6 +134,7 @@ class AppI10n {
   static const close = 'close';
   static const emptyTip = 'emptyTip';
   static const toolNoExist = 'toolNoExist';
+  static const projectNoExist = 'projectNoExist';
   static const loading = 'loading';
   static const extractFolderToast = 'extractFolderToast';
   static const projectFolderToast = 'projectFolderToast';

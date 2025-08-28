@@ -61,6 +61,7 @@
     },
     "config": {
       "label": "Config",
+      "maximizeOpen": "Maximize on startup",
       "onlySaveImage": "Save only image files",
       "noTexture": "Don't retain texture images",
       "originalProjectName": "Title as project name",
@@ -77,7 +78,13 @@
       "deleteTransparency": "Delete transparent images",
       "deleteTransparencyTip": "Images with transparency will be deleted to the recycle bin",
       "getAcfInfo": "Get acf file info",
-      "getAcfInfoTip": "Get the last update time of the wallpaper"
+      "getAcfInfoTip": "Get the last update time of the wallpaper",
+      "acfPath": "Acf file path",
+      "acfPathTip": "Please select the path of appworkshop_431960.acf file",
+      "autoUpdateProjectPath": "Auto update project path",
+      "autoUpdateProjectPathTip": "Auto update project path after updating wallpaper library path",
+      "autoUpdateAcfPath": "Auto update acf path",
+      "autoUpdateAcfPathTip": "Auto update acf path after updating wallpaper library path"
     },
     "system": {
       "label": "System",
@@ -109,8 +116,9 @@
     "getWallpaperFailed": "Failed to get wallpaper:"
   },
   "close": "Close",
-  "emptyTip": "No data available\nPlease manually select a new wallpaper library folder",
+  "emptyTip": "No data available\nPlease manually select a new wallpaper library folder\nPath as: ...\\steamapps\\workshop\\content\\431960",
   "toolNoExist": "Tool file not found, please go to Settings to check if the tool path is correct",
+  "projectNoExist": "Project folder does not exist. Create manually or change it",
   "loading": "Loading",
   "extractFolderToast": "Select the output folder for extracted wallpapers; reconfigure at the bottom",
   "projectFolderToast": "Select the output folder for extracted projects; reconfigure in settings"

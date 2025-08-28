@@ -167,13 +167,19 @@ int _skipString(String content, int startIndex) {
 
 /// 将解析后的ACF数据转换为AcfInfo对象列表
 List<AcfInfo> convertToAcfInfoList(Map<String, dynamic> parsedData) {
+  if (parsedData.isEmpty) return [];
+  if (!parsedData.containsKey('AppWorkshop')) return [];
   final List<AcfInfo> result = [];
 
   // 获取AppWorkshop对象
-  final appWorkshop = parsedData['AppWorkshop'] as Map<String, dynamic>;
+  final appWorkshop = parsedData['AppWorkshop'] is Map<String, dynamic>
+      ? parsedData['AppWorkshop'] as Map<String, dynamic>
+      : null;
+  if (appWorkshop == null) return [];
 
   // 处理WorkshopItemsInstalled
-  if (appWorkshop.containsKey('WorkshopItemsInstalled')) {
+  if (appWorkshop.containsKey('WorkshopItemsInstalled') &&
+      appWorkshop['WorkshopItemsInstalled'] is Map<String, dynamic>) {
     final workshopItemsInstalled =
         appWorkshop['WorkshopItemsInstalled'] as Map<String, dynamic>;
     workshopItemsInstalled.forEach((id, value) {

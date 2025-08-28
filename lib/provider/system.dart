@@ -30,7 +30,11 @@ class WallpaperPath extends _$WallpaperPath {
 class ToolPath extends _$ToolPath {
   @override
   String? build() => getToolPath();
-  void update(String? value) => state = value;
+  void update(String? value) async {
+    state = value;
+    if (state == null) return;
+    await StorageUtil.setString(AppKeys.toolPath, value!);
+  }
 }
 
 @riverpod
@@ -50,6 +54,7 @@ class ExportPath extends _$ExportPath {
   String? build() => StorageUtil.getString(AppKeys.exportPath);
   void update(String? value) async {
     state = value;
+    if (state == null) return;
     await StorageUtil.setString(AppKeys.exportPath, value!);
   }
 }
@@ -118,5 +123,16 @@ class CurrentExtractType extends _$CurrentExtractType {
   void update(ExtractType value) async {
     state = value;
     await StorageUtil.setInt(AppKeys.extractType, value.index);
+  }
+}
+
+@riverpod
+class AcfPath extends _$AcfPath {
+  @override
+  String? build() => StorageUtil.getString(AppKeys.acfPath);
+  void update(String? value) async {
+    state = value;
+    if (value == null) return;
+    await StorageUtil.setString(AppKeys.acfPath, value);
   }
 }

@@ -36,9 +36,8 @@ class _TopSortState extends ConsumerState<SortDropdown> {
           focusColor: Colors.transparent,
           items: SortType.values
               .map((e) {
-                if (!ref.watch(getAcfInfoProvider) && e == SortType.update) {
-                  return null;
-                }
+                bool useAcfFile = ref.watch(useAcfInfoProvider);
+                if (!useAcfFile && e == SortType.update) return null;
                 return DropdownMenuItem(
                   value: e,
                   child: Text(

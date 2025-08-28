@@ -97,6 +97,19 @@ void showToolNoExistToast() {
   );
 }
 
+void projectNoExistToast(String folder) {
+  BotToast.showCustomText(
+    duration: Duration(seconds: 5),
+    toastBuilder: (void Function() cancelFunc) {
+      return ToastView(
+        icon: Icons.warning_rounded,
+        iconColor: Colors.red,
+        text: tr(AppI10n.projectNoExist),
+      );
+    },
+  );
+}
+
 void showErrorToast(String message) {
   BotToast.showCustomText(
     duration: Duration(seconds: 5),

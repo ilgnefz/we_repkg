@@ -9,7 +9,6 @@ import 'package:we_repkg/constants/i10n.dart';
 import 'package:we_repkg/cores/base.dart';
 import 'package:we_repkg/cores/extract.dart';
 import 'package:we_repkg/models/wallpaper.dart';
-import 'package:we_repkg/provider/setting.dart';
 import 'package:we_repkg/provider/wallpaper.dart';
 import 'package:we_repkg/utils/tool.dart';
 import 'package:we_repkg/widgets/copy.dart';
@@ -78,17 +77,17 @@ class SideView extends ConsumerWidget {
                     ),
                   ),
                   if (size.height > 720) ...[
-                    if (ref.watch(getAcfInfoProvider))
-                      Text(
-                        '${tr(AppI10n.homeUpdateDate)}: ${formattedTime(wallpaper.updateTime)}',
-                        style: theme.extension<SideTheme>()!.mediumStyle,
-                        textAlign: TextAlign.center,
-                      ),
                     Text(
                       '${tr(AppI10n.homeCreatedDate)}: ${wallpaper.createTime.toString().substring(0, 19)}',
                       style: theme.extension<SideTheme>()!.mediumStyle,
                       textAlign: TextAlign.center,
                     ),
+                    if (wallpaper.updateTime != null)
+                      Text(
+                        '${tr(AppI10n.homeUpdateDate)}: ${formattedTime(wallpaper.updateTime)}',
+                        style: theme.extension<SideTheme>()!.mediumStyle,
+                        textAlign: TextAlign.center,
+                      ),
                   ],
                   SizedBox(height: 4),
                   if (wallpaper.type != 'application' ||

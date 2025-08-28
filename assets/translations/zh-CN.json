@@ -61,6 +61,7 @@
     },
     "config": {
       "label": "配置",
+      "maximizeOpen": "启动时最大化",
       "onlySaveImage": "仅保存图片文件",
       "noTexture": "不保留纹理图片",
       "originalProjectName": "标题为原项目名",
@@ -77,7 +78,13 @@
       "deleteTransparency": "删除透明图片",
       "deleteTransparencyTip": "提取的图片中有透明度的图片将会被删除至回收站",
       "getAcfInfo": "获取 acf 文件信息",
-      "getAcfInfoTip": "用来获取壁纸最后的更新时间"
+      "getAcfInfoTip": "用来获取壁纸最后的更新时间",
+      "acfPath": "Acf 路径",
+      "acfPathTip": "请选择 appworkshop_431960.acf 文件的路径",
+      "autoUpdateProjectPath": "自动更新项目路径",
+      "autoUpdateProjectPathTip": "手动选择壁纸库路径后自动更新项目路径",
+      "autoUpdateAcfPath": "自动更新 acf 路径",
+      "autoUpdateAcfPathTip": "手动选择壁纸库路径后自动更新 acf 路径"
     },
     "system": {
       "label": "系统",
@@ -109,8 +116,9 @@
     "getWallpaperFailed": "获取壁纸失败:"
   },
   "close": "关闭",
-  "emptyTip": "未识别到任何数据\n请手动选择一个新的壁纸库文件夹",
+  "emptyTip": "未识别到任何数据\n请手动选择一个新的壁纸库文件夹\n路径为：...\\steamapps\\workshop\\content\\431960",
   "toolNoExist": "未找到工具文件，请前往设置查看工具路径是否正确",
+  "projectNoExist": "项目文件夹不存在，请手动创建或更改",
   "loading": "正在加载",
   "extractFolderToast": "选择提取壁纸后输出的文件夹，可在底部重新配置",
   "projectFolderToast": "选择提取项目后的输出文件夹，可在设置中重新配置"

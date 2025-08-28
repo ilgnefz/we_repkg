@@ -21,6 +21,19 @@ String? getToolPath() {
   return toolPath;
 }
 
+String? getAcfPath([String? filePath]) {
+  String? acfPath = StorageUtil.getString(AppKeys.acfPath);
+  if (acfPath == null) {
+    filePath ??= StorageUtil.getString(AppKeys.wallpaperPath);
+    if (filePath == null) return null;
+    acfPath = path.join(
+      path.dirname(path.dirname(filePath)),
+      AppStrings.acfName,
+    );
+  }
+  return File(acfPath).existsSync() ? acfPath : null;
+}
+
 // String? defaultFont() => Platform.isWindows ? 'Microsoft YaHei' : null;
 
 Future<int> getSize(String filePath) async {
@@ -95,8 +108,8 @@ bool _imageHasTransparentPixels(img.Image image) {
   return false; // 没有透明像素
 }
 
-String getAcfPath(String filePath) =>
-    path.join(path.dirname(path.dirname(filePath)), AppStrings.acfName);
+// String getAcfPath(String filePath) =>
+//     path.join(path.dirname(path.dirname(filePath)), AppStrings.acfName);
 
 String projectDefaultPath(String filePath) {
   String workshopPath = path.dirname(path.dirname(filePath));

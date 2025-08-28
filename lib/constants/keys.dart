@@ -18,7 +18,7 @@ class AppKeys {
   static const String toolVersion = 'toolVersion';
   static const String sortType = 'sortType';
   static const String earliestDate = 'earliestDate';
-  static const String infoPath = 'infoPath';
+  // static const String infoPath = 'infoPath';
   // static const String hadPressedCtrl = 'hadPressedCtrl';
   static const String ctrlPressedIndex = 'ctrlPressedIndex';
   static const String theme = 'theme';
@@ -27,5 +27,9 @@ class AppKeys {
   static const String useProjectFolder = 'useProjectFolder';
   static const String projectPath = 'projectPath';
   static const String extractType = 'extractType';
-  static const String getAcfInfo = 'getAcfInfo';
+  static const String useAcfInfo = 'useAcfInfo';
+  static const String acfPath = 'acfPath';
+  static const String updateProjectPath = 'updateProjectPath';
+  static const String updateAcfPath = 'updateAcfPath';
+  static const String maximizeOpen = 'maximizeOpen';
 }

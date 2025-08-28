@@ -35,8 +35,9 @@ Future<void> extractProject(
   String outPath = useProjectPath || extractType.isProject
       ? ref.watch(projectPathProvider)!
       : ref.watch(exportPathProvider)!;
-  // if (!await Directory(outPath).exists()) await Directory(outPath).create();
-  print('输出路径: $outPath');
+  if (!await Directory(outPath).exists()) {
+    return projectNoExistToast(outPath);
+  }
   changeLoadingText(ref, tr(AppI10n.dialogProcessingWallpaper));
   final cancel = showLoadingView(wallpapers);
   int index = 0;

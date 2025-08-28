@@ -27,7 +27,7 @@ class FolderInput extends StatelessWidget {
       width: width,
       height: height,
       controller: controller,
-      padding: EdgeInsets.only(left: 12),
+      padding: EdgeInsets.only(left: 8),
       fontSize: fontSize,
       readOnly: true,
       hintText: hintText,

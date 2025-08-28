@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:local_notifier/local_notifier.dart';
+import 'package:we_repkg/constants/keys.dart';
 import 'package:we_repkg/constants/strings.dart';
 import 'package:we_repkg/src/rust/frb_generated.dart';
 import 'package:we_repkg/utils/pack.dart';
@@ -16,6 +17,7 @@ class AppConfig {
     await EasyLocalization.ensureInitialized();
     await windowManager.ensureInitialized();
 
+    // TODO: 注释
     // await StorageUtil.clear();
 
     await localNotifier.setup(
@@ -32,7 +34,9 @@ class AppConfig {
       titleBarStyle: TitleBarStyle.hidden,
     );
     windowManager.waitUntilReadyToShow(windowOptions, () async {
-      // await windowManager.maximize();
+      if (StorageUtil.getBool(AppKeys.maximizeOpen)) {
+        windowManager.maximize();
+      }
       await windowManager.show();
       await windowManager.focus();
       // await windowManager.setAsFrameless();

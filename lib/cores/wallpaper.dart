@@ -45,9 +45,9 @@ Future<String?> getWallpaperPath() async {
   // 生成所有可能的壁纸路径
   final tempPaths = _generateWallpaperPaths(disks);
   // 查找存在的壁纸路径
-  final (wallpaperPath, infoPath) = await _findWallpaperPath(tempPaths);
+  final wallpaperPath = await _findWallpaperPath(tempPaths);
   // 处理存储逻辑
-  await _handleStorageLogic(wallpaperPath, infoPath);
+  await _handleStorageLogic(wallpaperPath);
   return wallpaperPath;
 }
 
@@ -58,50 +58,37 @@ List<String> _generateWallpaperPaths(List<String> disks) {
   tempPaths.add('${disks.first}${AppStrings.systemDiskWallpaperPath}');
   // 为所有磁盘添加基础路径
   for (final disk in disks) {
-    tempPaths.add('$disk${AppStrings.baseWallpaperPath}');
+    tempPaths.add('$disk${AppStrings.baseWallpaperPath1}');
+    tempPaths.add('$disk${AppStrings.baseWallpaperPath2}');
+    tempPaths.add('$disk${AppStrings.baseWallpaperPath3}');
   }
   return tempPaths;
 }
 
 /// 查找存在的壁纸路径
-Future<(String?, String?)> _findWallpaperPath(List<String> tempPaths) async {
-  String? wallpaperPath;
-  String? infoPath;
-  String? emptyPath;
-  for (final tempPath in tempPaths) {
-    if (await Directory(tempPath).exists()) {
-      emptyPath ??= tempPath;
-      // 检查目录是否包含文件
-      final dir = Directory(tempPath);
-      final hasContent = await dir.list().isEmpty == false;
-      if (hasContent) {
-        wallpaperPath = tempPath;
-        infoPath = getAcfPath(tempPath);
-        break;
-      }
+Future<String?> _findWallpaperPath(List<String> tempPaths) async {
+  String? emptyPath, wallpaperPath;
+  for (String tempPath in tempPaths) {
+    if (!(await Directory(tempPath).exists())) continue;
+    emptyPath ??= tempPath;
+    Directory dir = Directory(tempPath);
+    bool hasContent = await dir.list().isEmpty == false;
+    if (hasContent) {
+      wallpaperPath = tempPath;
+      break;
     }
   }
   // 如果没有找到有内容的目录，但有空目录，使用空目录
   wallpaperPath ??= emptyPath;
-  return (wallpaperPath, infoPath);
+  return wallpaperPath;
 }
 
 /// 处理存储相关的逻辑
-Future<void> _handleStorageLogic(
-  String? wallpaperPath,
-  String? infoPath,
-) async {
-  if (infoPath != null) {
-    await StorageUtil.setString(AppKeys.infoPath, infoPath);
-  }
+Future<void> _handleStorageLogic(String? wallpaperPath) async {
   if (wallpaperPath != null) {
-    // 保存首次发现的壁纸路径
-    // final before = StorageUtil.getString(AppKeys.wallpaperPathBefore);
-    // if (before == null) {
-    //   await StorageUtil.setString(AppKeys.wallpaperPathBefore, wallpaperPath);
-    // }
-    // 设置项目默认路径
-    final projectPath = projectDefaultPath(wallpaperPath);
+    String? acfPath = getAcfPath(wallpaperPath);
+    if (acfPath != null) await StorageUtil.setString(AppKeys.acfPath, acfPath);
+    String projectPath = projectDefaultPath(wallpaperPath);
     await StorageUtil.setString(AppKeys.projectPath, projectPath);
   }
 }
@@ -130,13 +117,14 @@ Future<List<WallpaperInfo>> getAllFile(WidgetRef ref) async {
   return wallpapers;
 }
 
-Future<List<AcfInfo>> getWallpaperInfo() async {
+Future<List<AcfInfo>> getAcfInfo() async {
   List<AcfInfo> acfInfoList = [];
-  bool getInfo = StorageUtil.getNullBool(AppKeys.getAcfInfo) ?? true;
+  bool getInfo = StorageUtil.getNullBool(AppKeys.useAcfInfo) ?? true;
   if (!getInfo) return acfInfoList;
-  String? infoPath = StorageUtil.getString(AppKeys.infoPath);
-  if (infoPath == null) return acfInfoList;
-  Map<String, dynamic> content = await parseAcf(infoPath);
+  String? acfPath = StorageUtil.getString(AppKeys.acfPath);
+  if (acfPath == null) return acfInfoList;
+  if (!(await File(acfPath).exists())) return acfInfoList;
+  Map<String, dynamic> content = await parseAcf(acfPath);
   if (content.isEmpty) return acfInfoList;
   acfInfoList = convertToAcfInfoList(content); // 转换为AcfInfo对象列表
   return acfInfoList;
@@ -149,21 +137,20 @@ Future<List<WallpaperInfo>> getAllWallpaper(
   if (folderPath == null) return [];
   List<WallpaperInfo> wallpapers = [];
   Directory dir = Directory(folderPath);
+  if (!(await dir.exists())) return [];
   final (
     dirList,
     acfInfoList,
-  ) = await (Future.wait([dir.list().toList(), getWallpaperInfo()])).then(
+  ) = await (Future.wait([dir.list().toList(), getAcfInfo()])).then(
     (results) =>
         (results[0] as List<FileSystemEntity>, results[1] as List<AcfInfo>),
   );
   DateTime? earliestDate;
   // 创建一个Map以便快速查找AcfInfo
   Map<String, AcfInfo> acfInfoMap = {};
-  print('acfInfoList: ${acfInfoList.length}');
   for (var acfInfo in acfInfoList) {
     acfInfoMap[acfInfo.id] = acfInfo;
   }
-  print('acfInfoMap: ${acfInfoMap.length}');
   for (FileSystemEntity folder in dirList) {
     if (folder is Directory) {
       String id = path.basename(folder.path);
