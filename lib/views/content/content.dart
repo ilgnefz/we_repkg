@@ -7,7 +7,7 @@ import 'package:we_repkg/provider/system.dart';
 import 'package:we_repkg/provider/wallpaper.dart';
 import 'package:we_repkg/views/states/empty.dart';
 
-import 'image.dart';
+import 'item.dart';
 
 class ContentView extends ConsumerStatefulWidget {
   const ContentView({super.key});
@@ -45,7 +45,7 @@ class _ContentViewState extends ConsumerState<ContentView> {
         ),
         cacheExtent: 500,
         itemBuilder: (context, index) =>
-            ImageView(width: width, index: index, wallpaper: list[index]),
+            ImageItem(width: width, index: index, wallpaper: list[index]),
       ),
     );
   }

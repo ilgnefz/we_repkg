@@ -55,18 +55,19 @@ class AppTheme {
       ),
     ],
   );
+
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     fontFamily: 'Microsoft YaHei',
     scaffoldBackgroundColor: Color(0xFF222222),
-    primaryColor: Color(0xFF2E70ED),
+    primaryColor: Color(0xFF4A90E2),
     textTheme: TextTheme(),
     inputDecorationTheme: InputDecorationTheme(
       hintStyle: TextStyle(color: Colors.white60, fontSize: 14),
       fillColor: Color(0xFF333333),
     ),
     dropdownMenuTheme: DropdownMenuThemeData(
-      inputDecorationTheme: InputDecorationTheme(fillColor: Color(0xFF111111)),
+      inputDecorationTheme: InputDecorationTheme(fillColor: Color(0xFF2D2D2D)),
       // menuStyle: MenuStyle(
       //   backgroundColor: WidgetStateProperty.all(Color(0xFF333333)),
       // ),
@@ -84,7 +85,7 @@ class AppTheme {
     ),
     iconTheme: IconThemeData(color: Colors.white),
     dialogTheme: DialogThemeData(
-      backgroundColor: Color(0xFF111111),
+      backgroundColor: Color(0xFF252525),
       barrierColor: Colors.black.withValues(alpha: .6),
     ),
     extensions: [

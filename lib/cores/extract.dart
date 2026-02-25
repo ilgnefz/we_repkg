@@ -72,7 +72,7 @@ Future<void> extractProject(
       final args = [
         'extract',
         '-c',
-        if (overwrite != null) overwrite,
+        ?overwrite,
         '-o',
         outPath,
         wallpaper.target,
@@ -204,7 +204,7 @@ Future<String?> extractPKG(WidgetRef ref, String file, String outPath) async {
       '-e',
       'tex',
       '-s',
-      if (overwrite != null) overwrite,
+      ?overwrite,
       '-o',
       outPath,
       file,

@@ -16,7 +16,7 @@ class FunctionSelectedBtn extends ConsumerWidget {
       children: [
         PopupMenuButton<ExtractType>(
           icon: Icon(Icons.arrow_drop_down),
-          color: theme.scaffoldBackgroundColor,
+          color: theme.dialogTheme.backgroundColor,
           itemBuilder: (context) => ExtractType.values
               .map(
                 (e) => PopupMenuItem(

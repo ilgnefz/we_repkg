@@ -198,6 +198,7 @@ Future<String?> deleteChecked(WidgetRef ref) async {
     for (var wallpaper in wallpapers) {
       ref.read(wallpaperListProvider.notifier).remove(wallpaper);
     }
+    showCopyToast();
   } catch (e) {
     debugPrint('删除选中失败: $e');
     err = '${tr(AppI10n.dialogDeleteFailed)} $e';

@@ -45,7 +45,7 @@ class CustomInput extends StatelessWidget {
       child: Row(
         spacing: 4,
         children: [
-          if (leading != null) leading!,
+          ?leading,
           Expanded(
             child: TextField(
               controller: controller,
@@ -66,7 +66,7 @@ class CustomInput extends StatelessWidget {
               onChanged: onChanged,
             ),
           ),
-          if (extraIcon != null) extraIcon!,
+          ?extraIcon,
           if (suffix != null) ...[suffix!, SizedBox.shrink()],
         ],
       ),

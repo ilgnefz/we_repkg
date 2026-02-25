@@ -22,6 +22,7 @@
     "createdDate": "Creation date",
     "extractCurrent": "Extract wallpaper",
     "extractForProject": "Extract as project",
+    "extractSelected": "Extract selected",
     "playVideo": "  Play video file  ",
     "openFileLocation": "Open file location",
     "deleteCurrent": "Delete wallpaper",

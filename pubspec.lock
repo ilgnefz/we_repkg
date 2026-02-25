@@ -358,6 +358,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_context_menu:
+    dependency: "direct main"
+    description:
+      name: flutter_context_menu
+      sha256: e8f2cd13ef5e3320e35b27b3f7de278d9fc6b3f9c328cc16cd90784fb66d1054
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.4.1"
   flutter_driver:
     dependency: transitive
     description: flutter

@@ -32,6 +32,10 @@ You can click on a specific wallpaper to perform individual operations:
 
 ![05](docs/05.gif)
 
+Operations can also be performed via the right-click menu.
+
+![11](docs/11.gif)
+
 The right-side menu may vary slightly depending on the wallpaper type. For example, video wallpapers allow you to play the video directly using your system's default media player:
 
 ![06](docs/06.gif)

@@ -1,141 +1,148 @@
 class AppI10n {
   // 首页相关
-  static const homeTopTitle = 'home.topTitle';
-  static const homeSearchTip = 'home.searchTip';
-  static const homeSetting = 'home.setting';
-  static const homeSortDate = 'home.sortDate';
-  static const homeSortSize = 'home.sortSize';
-  static const homeSortUpdate = 'home.sortUpdate';
-  static const homeExtractTo = 'home.extractTo';
-  static const homeExtractFolderTip = 'home.extractFolderTip';
-  static const homeBrowseFolder = 'home.browseFolder';
-  static const homeExtractAll = 'home.extractAll';
-  static const homeExtractChecked = 'home.extractChecked';
-  static const homeCancelChecked = 'home.cancelChecked';
-  static const homeDeleteChecked = 'home.deleteChecked';
-  static const homeScene = 'home.scene';
-  static const homeVideo = 'home.video';
-  static const homeWeb = 'home.web';
-  static const homeApplication = 'home.application';
-  static const homeUnknown = 'home.unknown';
-  static const homeUpdateDate = 'home.updateDate';
-  static const homeCreatedDate = 'home.createdDate';
-  static const homeExtractCurrent = 'home.extractCurrent';
-  static const homeExtractForProject = 'home.extractForProject';
-  static const homePlayVideo = 'home.playVideo';
-  static const homeOpenFileLocation = 'home.openFileLocation';
-  static const homeDeleteCurrent = 'home.deleteCurrent';
-  static const homeWallpaper = 'home.wallpaper';
-  static const homeProject = 'home.project';
+  static const String homeTopTitle = 'home.topTitle';
+  static const String homeSearchTip = 'home.searchTip';
+  static const String homeSetting = 'home.setting';
+  static const String homeSortDate = 'home.sortDate';
+  static const String homeSortSize = 'home.sortSize';
+  static const String homeSortUpdate = 'home.sortUpdate';
+  static const String homeExtractTo = 'home.extractTo';
+  static const String homeExtractFolderTip = 'home.extractFolderTip';
+  static const String homeBrowseFolder = 'home.browseFolder';
+  static const String homeExtractAll = 'home.extractAll';
+  static const String homeExtractChecked = 'home.extractChecked';
+  static const String homeCancelChecked = 'home.cancelChecked';
+  static const String homeDeleteChecked = 'home.deleteChecked';
+  static const String homeScene = 'home.scene';
+  static const String homeVideo = 'home.video';
+  static const String homeWeb = 'home.web';
+  static const String homeApplication = 'home.application';
+  static const String homeUnknown = 'home.unknown';
+  static const String homeUpdateDate = 'home.updateDate';
+  static const String homeCreatedDate = 'home.createdDate';
+  static const String homeExtractCurrent = 'home.extractCurrent';
+  static const String homeExtractForProject = 'home.extractForProject';
+  static const String homeExtractSelected = 'home.extractSelected';
+  static const String homePlayVideo = 'home.playVideo';
+  static const String homeOpenFileLocation = 'home.openFileLocation';
+  static const String homeDeleteCurrent = 'home.deleteCurrent';
+  static const String homeWallpaper = 'home.wallpaper';
+  static const String homeProject = 'home.project';
 
   // 弹窗相关
-  static const dialogOperationCompleted = 'dialog.operationCompleted';
-  static const dialogProcessingWallpaper = 'dialog.ProcessingWallpaper';
-  static const dialogProcessingDelete = 'dialog.ProcessingDelete';
-  static const dialogErrorTitle = 'dialog.errorTitle';
-  static const dialogDeleteFailedTitle = 'dialog.deleteFailedTitle';
-  static const dialogExtractImageInfo = 'dialog.extractImageInfo';
-  static const dialogExtractVideoInfo = 'dialog.extractVideoInfo';
-  static const dialogCopySuccess = 'dialog.copySuccess';
-  static const dialogOpenFolderFailed = 'dialog.openFolderFailed';
-  static const dialogFolderNoExist = 'dialog.folderNoExist';
-  static const dialogPlayVideoFailed = 'dialog.playVideoFailed';
-  static const dialogFileNoExist = 'dialog.fileNoExist';
-  static const dialogDeleteFailed = 'dialog.deleteFailed';
-  static const dialogExtractProject = 'dialog.extractProject';
+  static const String dialogOperationCompleted = 'dialog.operationCompleted';
+  static const String dialogProcessingWallpaper = 'dialog.ProcessingWallpaper';
+  static const String dialogProcessingDelete = 'dialog.ProcessingDelete';
+  static const String dialogErrorTitle = 'dialog.errorTitle';
+  static const String dialogDeleteFailedTitle = 'dialog.deleteFailedTitle';
+  static const String dialogExtractImageInfo = 'dialog.extractImageInfo';
+  static const String dialogExtractVideoInfo = 'dialog.extractVideoInfo';
+  static const String dialogCopySuccess = 'dialog.copySuccess';
+  static const String dialogOpenFolderFailed = 'dialog.openFolderFailed';
+  static const String dialogFolderNoExist = 'dialog.folderNoExist';
+  static const String dialogPlayVideoFailed = 'dialog.playVideoFailed';
+  static const String dialogFileNoExist = 'dialog.fileNoExist';
+  static const String dialogDeleteFailed = 'dialog.deleteFailed';
+  static const String dialogExtractProject = 'dialog.extractProject';
 
   // 设置页面相关
-  static const settingTitle = 'setting.title';
+  static const String settingTitle = 'setting.title';
 
   // 设置-过滤相关
-  static const settingFilterLabel = 'setting.filter.label';
-  static const settingFilterShowAll = 'setting.filter.showAll';
-  static const settingFilterHideScene = 'setting.filter.hideScene';
-  static const settingFilterHideVideo = 'setting.filter.hideVideo';
-  static const settingFilterHideWeb = 'setting.filter.hideWeb';
-  static const settingFilterHideApplication = 'setting.filter.hideApplication';
-  static const settingFilterHideUnknown = 'setting.filter.hideUnknown';
+  static const String settingFilterLabel = 'setting.filter.label';
+  static const String settingFilterShowAll = 'setting.filter.showAll';
+  static const String settingFilterHideScene = 'setting.filter.hideScene';
+  static const String settingFilterHideVideo = 'setting.filter.hideVideo';
+  static const String settingFilterHideWeb = 'setting.filter.hideWeb';
+  static const String settingFilterHideApplication =
+      'setting.filter.hideApplication';
+  static const String settingFilterHideUnknown = 'setting.filter.hideUnknown';
 
-  static const settingFilterHideMature = 'setting.filter.hideMature';
+  static const String settingFilterHideMature = 'setting.filter.hideMature';
 
-  static const settingFilterOnly = 'setting.filter.only';
-  static const settingFilterShow = 'setting.filter.show';
-  static const settingFilterHide = 'setting.filter.hide';
+  static const String settingFilterOnly = 'setting.filter.only';
+  static const String settingFilterShow = 'setting.filter.show';
+  static const String settingFilterHide = 'setting.filter.hide';
 
   // 设置-配置相关
-  static const settingConfigLabel = 'setting.config.label';
-  static const settingConfigOnlySaveImage = 'setting.config.onlySaveImage';
-  static const settingConfigNoTexture = 'setting.config.noTexture';
-  static const settingConfigOriginalProjectName =
+  static const String settingConfigLabel = 'setting.config.label';
+  static const String settingConfigOnlySaveImage =
+      'setting.config.onlySaveImage';
+  static const String settingConfigNoTexture = 'setting.config.noTexture';
+  static const String settingConfigOriginalProjectName =
       'setting.config.originalProjectName';
-  static const settingConfigReplaceExistFile =
+  static const String settingConfigReplaceExistFile =
       'setting.config.replaceExistFile';
-  static const settingConfigReplaceExistFileTip =
+  static const String settingConfigReplaceExistFileTip =
       'setting.config.replaceExistFileTip';
-  static const settingConfigToolPath = 'setting.config.toolPath';
-  static const settingConfigToolPathTip = 'setting.config.toolPathTip';
-  static const settingConfigWallpapersPath = 'setting.config.wallpapersPath';
-  static const settingConfigWallpapersPathTip =
+  static const String settingConfigToolPath = 'setting.config.toolPath';
+  static const String settingConfigToolPathTip = 'setting.config.toolPathTip';
+  static const String settingConfigWallpapersPath =
+      'setting.config.wallpapersPath';
+  static const String settingConfigWallpapersPathTip =
       'setting.config.wallpapersPathTip';
-  static const settingConfigDeleteTransparency =
+  static const String settingConfigDeleteTransparency =
       'setting.config.deleteTransparency';
-  static const settingConfigDeleteTransparencyTip =
+  static const String settingConfigDeleteTransparencyTip =
       'setting.config.deleteTransparencyTip';
-  static const settingConfigProjectPath = 'setting.config.projectPath';
-  static const settingConfigProjectPathTip = 'setting.config.projectPathTip';
-  static const settingConfigUseProjectFolder =
+  static const String settingConfigProjectPath = 'setting.config.projectPath';
+  static const String settingConfigProjectPathTip =
+      'setting.config.projectPathTip';
+  static const String settingConfigUseProjectFolder =
       'setting.config.useProjectFolder';
-  static const settingConfigUseProjectFolderTip =
+  static const String settingConfigUseProjectFolderTip =
       'setting.config.useProjectFolderTip';
-  static const settingConfigGetAcfInfo = 'setting.config.getAcfInfo';
-  static const settingConfigGetAcfInfoTip = 'setting.config.getAcfInfoTip';
-  static const settingConfigAcfPath = 'setting.config.acfPath';
-  static const settingConfigAcfPathTip = 'setting.config.acfPathTip';
-  static const settingConfigAutoUpdateProjectPath =
+  static const String settingConfigGetAcfInfo = 'setting.config.getAcfInfo';
+  static const String settingConfigGetAcfInfoTip =
+      'setting.config.getAcfInfoTip';
+  static const String settingConfigAcfPath = 'setting.config.acfPath';
+  static const String settingConfigAcfPathTip = 'setting.config.acfPathTip';
+  static const String settingConfigAutoUpdateProjectPath =
       'setting.config.autoUpdateProjectPath';
-  static const settingConfigAutoUpdateProjectPathTip =
+  static const String settingConfigAutoUpdateProjectPathTip =
       'setting.config.autoUpdateProjectPathTip';
-  static const settingConfigAutoUpdateAcfPath =
+  static const String settingConfigAutoUpdateAcfPath =
       'setting.config.autoUpdateAcfPath';
-  static const settingConfigAutoUpdateAcfPathTip =
+  static const String settingConfigAutoUpdateAcfPathTip =
       'setting.config.autoUpdateAcfPathTip';
-  static const settingConfigMaximizeOpen = 'setting.config.maximizeOpen';
+  static const String settingConfigMaximizeOpen = 'setting.config.maximizeOpen';
 
   // 设置-系统相关
-  static const settingSystemLabel = 'setting.system.label';
-  static const settingSystemNotification = 'setting.system.notification';
-  static const settingSystemInSystem = 'setting.system.inSystem';
-  static const settingSystemInApp = 'setting.system.inApp';
-  static const settingSystemLanguage = 'setting.system.language';
-  static const settingSystemTheme = 'setting.system.theme';
-  static const settingSystemLight = 'setting.system.light';
-  static const settingSystemDark = 'setting.system.dark';
-  static const settingSystemSystem = 'setting.system.system';
+  static const String settingSystemLabel = 'setting.system.label';
+  static const String settingSystemNotification = 'setting.system.notification';
+  static const String settingSystemInSystem = 'setting.system.inSystem';
+  static const String settingSystemInApp = 'setting.system.inApp';
+  static const String settingSystemLanguage = 'setting.system.language';
+  static const String settingSystemTheme = 'setting.system.theme';
+  static const String settingSystemLight = 'setting.system.light';
+  static const String settingSystemDark = 'setting.system.dark';
+  static const String settingSystemSystem = 'setting.system.system';
 
   // 设置-关于相关
-  static const settingAboutLabel = 'setting.about.label';
-  static const settingAboutOpenSourceLicense =
+  static const String settingAboutLabel = 'setting.about.label';
+  static const String settingAboutOpenSourceLicense =
       'setting.about.openSourceLicense';
-  static const settingAboutRepkgVersion = 'setting.about.repkgVersion';
-  static const settingAboutRepkgAuthor = 'setting.about.repkgAuthor';
-  static const settingAboutRepkgUrl = 'setting.about.repkgUrl';
-  static const settingAboutWeRepkgVersion = 'setting.about.weRepkgVersion';
-  static const settingAboutWeRepkgAuthor = 'setting.about.weRepkgAuthor';
-  static const settingAboutWeRepkgUrl = 'setting.about.weRepkgUrl';
+  static const String settingAboutRepkgVersion = 'setting.about.repkgVersion';
+  static const String settingAboutRepkgAuthor = 'setting.about.repkgAuthor';
+  static const String settingAboutRepkgUrl = 'setting.about.repkgUrl';
+  static const String settingAboutWeRepkgVersion =
+      'setting.about.weRepkgVersion';
+  static const String settingAboutWeRepkgAuthor = 'setting.about.weRepkgAuthor';
+  static const String settingAboutWeRepkgUrl = 'setting.about.weRepkgUrl';
 
   // 错误提示
-  static const errorExtractFailed = 'error.extractFailed';
-  static const errorExportVideoFailed = 'error.exportVideoFailed';
-  static const errorExportImageFailed = 'error.exportImageFailed';
-  static const errorCreatedFolderFailed = 'error.createdFolderFailed';
-  static const errorGetWallpaperFailed = 'error.getWallpaperFailed';
+  static const String errorExtractFailed = 'error.extractFailed';
+  static const String errorExportVideoFailed = 'error.exportVideoFailed';
+  static const String errorExportImageFailed = 'error.exportImageFailed';
+  static const String errorCreatedFolderFailed = 'error.createdFolderFailed';
+  static const String errorGetWallpaperFailed = 'error.getWallpaperFailed';
 
   // 其他
-  static const close = 'close';
-  static const emptyTip = 'emptyTip';
-  static const toolNoExist = 'toolNoExist';
-  static const projectNoExist = 'projectNoExist';
-  static const loading = 'loading';
-  static const extractFolderToast = 'extractFolderToast';
-  static const projectFolderToast = 'projectFolderToast';
+  static const String close = 'close';
+  static const String emptyTip = 'emptyTip';
+  static const String toolNoExist = 'toolNoExist';
+  static const String projectNoExist = 'projectNoExist';
+  static const String loading = 'loading';
+  static const String extractFolderToast = 'extractFolderToast';
+  static const String projectFolderToast = 'projectFolderToast';
 }

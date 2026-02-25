@@ -58,6 +58,15 @@ class WallpaperInfo {
   }
 
   @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is WallpaperInfo && other.id == id;
+  }
+
+  @override
+  int get hashCode => id.hashCode;
+
+  @override
   String toString() {
     return 'WallpaperInfo{id: $id, title: $title, contentRating: $contentRating, tags: $tags, previews: $previews, type: $type, updateTime: $updateTime, createTime: $createTime, target: $target, folder: $folder, size: $size, checked: $checked}\n';
   }
