@@ -1,11 +1,12 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:we_repkg/constants/keys.dart';
 import 'package:we_repkg/models/enums.dart';
+import 'package:we_repkg/models/filter.dart';
 import 'package:we_repkg/models/wallpaper.dart';
 import 'package:we_repkg/provider/setting.dart';
 import 'package:we_repkg/utils/storage.dart';
 
+import 'filter.dart';
 import 'system.dart';
 
 part 'wallpaper.g.dart';
@@ -14,28 +15,24 @@ part 'wallpaper.g.dart';
 class WallpaperList extends _$WallpaperList {
   @override
   List<WallpaperInfo> build() => [];
-  void add(WallpaperInfo value) {
-    state = [...state, value];
-  }
+  void add(WallpaperInfo value) => state = [...state, value];
 
-  void addAll(List<WallpaperInfo> value) {
-    state = [...state, ...value];
-  }
+  void addAll(List<WallpaperInfo> value) => state = [...state, ...value];
 
   void remove(WallpaperInfo value) {
-    state = state.where((e) => e != value).toList();
+    state = state.where((e) => e.id != value.id).toList();
   }
 
   void clear() => state = [];
 
   void toggleChecked(WallpaperInfo value) => state = state.map((e) {
-    if (e.id == value.id) e.checked = !e.checked;
+    if (e.id == value.id) return value.copyWith(checked: !value.checked);
     return e;
   }).toList();
 
   void updateChecked(WallpaperInfo value, bool checked) =>
       state = state.map((e) {
-        if (e.id == value.id) e.checked = checked;
+        if (e.id == value.id) return value.copyWith(checked: checked);
         return e;
       }).toList();
 }
@@ -68,6 +65,7 @@ class SelectedWallpaper extends _$SelectedWallpaper {
 //
 //   void clear() => state = [];
 // }
+
 @riverpod
 List<WallpaperInfo> checkedWallpaperList(Ref ref) =>
     ref.watch(filterWallpaperListProvider).where((e) => e.checked).toList();
@@ -76,7 +74,18 @@ List<WallpaperInfo> checkedWallpaperList(Ref ref) =>
 List<WallpaperInfo> filterWallpaperList(Ref ref) {
   List<WallpaperInfo> list = ref.watch(wallpaperListProvider);
   String keyWord = ref.watch(searchContentProvider);
-  switch (ref.watch(matureShowStateProvider)) {
+  final WallpaperFilter filter = ref.watch(filterStateProvider);
+  final MatureState matureState = filter.matureState;
+  final bool showAll = filter.showAll;
+  final bool hideScene = filter.hideScene;
+  final bool hideVideo = filter.hideVideo;
+  final bool hideWeb = filter.hideWeb;
+  final bool hideApp = filter.hideApp;
+  final bool hideUnknown = filter.hideUnknown;
+  final SortType sortType = ref.watch(wallpaperSortTypeProvider);
+  final bool sortAscending = ref.watch(sortAscendingProvider);
+
+  switch (matureState) {
     case MatureState.hide:
       list = list.where((e) => e.contentRating != 'mature').toList();
       break;
@@ -88,31 +97,27 @@ List<WallpaperInfo> filterWallpaperList(Ref ref) {
   if (keyWord.isNotEmpty) {
     list = list.where((e) => e.title.contains(keyWord)).toList();
   }
-  if (!ref.watch(showAllProvider)) {
+  if (!showAll) {
     list = list.where((e) => e.target.isNotEmpty).toList();
   }
-  if (ref.watch(hideSceneProvider)) {
+  if (hideScene) {
     list = list.where((e) => e.type != 'scene').toList();
   }
-  if (ref.watch(hideVideoProvider)) {
+  if (hideVideo) {
     list = list.where((e) => e.type != 'video').toList();
   }
-  if (ref.watch(hideWebProvider)) {
+  if (hideWeb) {
     list = list.where((e) => e.type != 'web').toList();
   }
-  if (ref.watch(hideAppProvider)) {
+  if (hideApp) {
     list = list.where((e) => e.type != 'application').toList();
   }
-  if (ref.watch(hideUnknownProvider)) {
+  if (hideUnknown) {
     list = list.where((e) => e.type != '').toList();
   }
-  // if (ref.watch(hideAdultProvider)) {
-  //   list = list.where((e) => e.contentRating != 'Mature').toList();
-  // }
-  switch (ref.watch(wallpaperSortTypeProvider)) {
+  switch (sortType) {
     case SortType.time:
       String earliestDate = StorageUtil.getString(AppKeys.earliestDate) ?? '';
-      // print('最早日期:$earliestDate');
       List<WallpaperInfo> earliestList = [];
       List<WallpaperInfo> otherList = [];
       for (WallpaperInfo wallpaper in list) {
@@ -136,7 +141,7 @@ List<WallpaperInfo> filterWallpaperList(Ref ref) {
       });
       break;
   }
-  if (ref.watch(sortAscendingProvider)) list = list.reversed.toList();
+  if (sortAscending) list = list.reversed.toList();
   return list;
 }
 

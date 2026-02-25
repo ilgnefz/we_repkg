@@ -31,6 +31,7 @@ class ClickIcon extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(4),
+      mouseCursor: SystemMouseCursors.click,
       child: Padding(padding: const EdgeInsets.all(4.0), child: child),
     );
   }

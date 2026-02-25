@@ -50,6 +50,7 @@ class DialogView extends StatelessWidget {
                 ),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(8),
+                  mouseCursor: SystemMouseCursors.click,
                   onTap: onClose,
                   child: Container(
                     height: 40,

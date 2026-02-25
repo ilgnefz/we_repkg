@@ -1,15 +1,15 @@
 class WallpaperInfo {
-  String id;
-  String title;
-  String contentRating;
-  List<String> tags;
-  String previews;
-  String type;
-  int? updateTime;
-  DateTime createTime;
-  String target;
-  String folder;
-  int size;
+  final String id;
+  final String title;
+  final String contentRating;
+  final List<String> tags;
+  final String previews;
+  final String type;
+  final int? updateTime;
+  final DateTime createTime;
+  final String target;
+  final String folder;
+  final int size;
   bool checked;
 
   WallpaperInfo({

@@ -6,6 +6,7 @@ import 'package:we_repkg/config/custom_theme.dart';
 import 'package:we_repkg/constants/i10n.dart';
 import 'package:we_repkg/models/enums.dart';
 import 'package:we_repkg/provider/setting.dart';
+import 'package:we_repkg/widgets/sliding_switch.dart';
 
 class NotificationSwitch extends ConsumerWidget {
   const NotificationSwitch({super.key});
@@ -20,9 +21,8 @@ class NotificationSwitch extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(tr(AppI10n.settingSystemNotification)),
-        CustomSlidingSegmentedControl<int>(
-          height: 32,
-          initialValue: type.index + 1,
+        SlidingSwitch(
+          initialValue: type.index,
           children: {
             1: Text(
               NotificationType.values[0].label,
@@ -33,16 +33,6 @@ class NotificationSwitch extends ConsumerWidget {
               style: theme.textTheme.bodySmall,
             ),
           },
-          decoration: BoxDecoration(
-            color: theme.extension<SlidingSegmentedTheme>()!.backgroundColor,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          thumbDecoration: BoxDecoration(
-            color: theme.extension<SlidingSegmentedTheme>()!.foregroundColor,
-            borderRadius: BorderRadius.circular(6),
-          ),
-          duration: Duration(milliseconds: 300),
-          curve: Curves.easeInToLinear,
           onValueChanged: (v) => ref
               .read(localNotificationTypeProvider.notifier)
               .update(NotificationType.values[v - 1]),

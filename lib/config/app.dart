@@ -9,7 +9,7 @@ import 'package:we_repkg/utils/storage.dart';
 import 'package:window_manager/window_manager.dart';
 
 class AppConfig {
-  static init(List<String> args) async {
+  static Future<void> init(List<String> args) async {
     WidgetsFlutterBinding.ensureInitialized();
     await RustLib.init();
     await PackInfo.init();
@@ -39,7 +39,8 @@ class AppConfig {
       }
       await windowManager.show();
       await windowManager.focus();
-      // await windowManager.setAsFrameless();
+      await windowManager.setAsFrameless();
+      await windowManager.setHasShadow(true);
     });
   }
 }

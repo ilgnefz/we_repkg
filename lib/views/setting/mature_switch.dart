@@ -5,7 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:we_repkg/config/custom_theme.dart';
 import 'package:we_repkg/constants/i10n.dart';
 import 'package:we_repkg/models/enums.dart';
-import 'package:we_repkg/provider/setting.dart';
+import 'package:we_repkg/provider/filter.dart';
+import 'package:we_repkg/widgets/sliding_switch.dart';
 
 class MatureSwitch extends ConsumerWidget {
   const MatureSwitch({super.key});
@@ -13,15 +14,14 @@ class MatureSwitch extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ThemeData theme = Theme.of(context);
-    MatureState type = ref.watch(matureShowStateProvider);
+    MatureState type = ref.watch(filterStateProvider).matureState;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(tr(AppI10n.settingFilterHideMature)),
-        CustomSlidingSegmentedControl<int>(
-          height: 32,
-          initialValue: type.index + 1,
+        SlidingSwitch(
+          initialValue: type.index,
           children: {
             1: Text(
               MatureState.values[0].label,
@@ -36,19 +36,9 @@ class MatureSwitch extends ConsumerWidget {
               style: theme.textTheme.bodySmall,
             ),
           },
-          decoration: BoxDecoration(
-            color: theme.extension<SlidingSegmentedTheme>()!.backgroundColor,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          thumbDecoration: BoxDecoration(
-            color: theme.extension<SlidingSegmentedTheme>()!.foregroundColor,
-            borderRadius: BorderRadius.circular(6),
-          ),
-          duration: Duration(milliseconds: 300),
-          curve: Curves.easeInToLinear,
           onValueChanged: (v) => ref
-              .read(matureShowStateProvider.notifier)
-              .update(MatureState.values[v - 1]),
+              .read(filterStateProvider.notifier)
+              .updateMatureState(MatureState.values[v - 1]),
         ),
       ],
     );

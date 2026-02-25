@@ -28,6 +28,7 @@ class SideView extends ConsumerWidget {
     }
 
     Size size = MediaQuery.of(context).size;
+    double imageSize = min(size.width * .2, 260);
 
     return Container(
       width: size.width * .25,
@@ -44,8 +45,8 @@ class SideView extends ConsumerWidget {
                 children: [
                   Image.file(
                     File(wallpaper.previews),
-                    width: min(size.width * .2, 260),
-                    height: min(size.width * .2, 260),
+                    width: imageSize,
+                    height: imageSize,
                     fit: BoxFit.cover,
                   ),
                   RichText(

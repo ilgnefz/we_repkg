@@ -23,6 +23,7 @@ class TopView extends StatelessWidget {
           Search(),
           SizedBox(width: 8),
           SortToggle(),
+          SizedBox(width: 4),
           SortDropdown(),
         ],
       ),

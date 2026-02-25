@@ -27,6 +27,8 @@ class _TopSortState extends ConsumerState<SortDropdown> {
         child: DropdownButton(
           focusNode: focusNode,
           value: ref.watch(wallpaperSortTypeProvider),
+          mouseCursor: SystemMouseCursors.click,
+          dropdownMenuItemMouseCursor: SystemMouseCursors.click,
           isDense: true,
           padding: EdgeInsets.only(left: 8, top: 6, bottom: 6),
           borderRadius: BorderRadius.circular(4),

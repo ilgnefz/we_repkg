@@ -7,6 +7,7 @@ class AppTheme {
     brightness: Brightness.light,
     fontFamily: 'Microsoft YaHei',
     scaffoldBackgroundColor: Colors.white,
+    primaryColor: Color(0xFF2E70ED),
     textTheme: TextTheme(),
     inputDecorationTheme: InputDecorationTheme(
       hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
@@ -19,6 +20,16 @@ class AppTheme {
       // ),
     ),
     dividerColor: Color(0xFFE0E0E0),
+    iconButtonTheme: IconButtonThemeData(
+      style: ButtonStyle(
+        mouseCursor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.disabled)) {
+            return SystemMouseCursors.basic;
+          }
+          return SystemMouseCursors.click;
+        }),
+      ),
+    ),
     iconTheme: IconThemeData(color: Color(0xFF727272)),
     dialogTheme: DialogThemeData(
       backgroundColor: Colors.white,
@@ -48,6 +59,7 @@ class AppTheme {
     brightness: Brightness.dark,
     fontFamily: 'Microsoft YaHei',
     scaffoldBackgroundColor: Color(0xFF222222),
+    primaryColor: Color(0xFF2E70ED),
     textTheme: TextTheme(),
     inputDecorationTheme: InputDecorationTheme(
       hintStyle: TextStyle(color: Colors.white60, fontSize: 14),
@@ -60,6 +72,16 @@ class AppTheme {
       // ),
     ),
     dividerColor: Color(0xFF404040),
+    iconButtonTheme: IconButtonThemeData(
+      style: ButtonStyle(
+        mouseCursor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.disabled)) {
+            return SystemMouseCursors.basic;
+          }
+          return SystemMouseCursors.click;
+        }),
+      ),
+    ),
     iconTheme: IconThemeData(color: Colors.white),
     dialogTheme: DialogThemeData(
       backgroundColor: Color(0xFF111111),

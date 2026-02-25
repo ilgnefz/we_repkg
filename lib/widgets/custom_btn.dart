@@ -21,10 +21,11 @@ class CustomBtn extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: backgroundColor ?? Color(0xff2973f3),
+        backgroundColor: backgroundColor ?? Theme.of(context).primaryColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         minimumSize: expended ? const Size(double.infinity, 40) : null,
         fixedSize: fixedSize,
+        enabledMouseCursor: SystemMouseCursors.click,
       ),
       child: Text(
         label,

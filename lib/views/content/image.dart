@@ -8,6 +8,7 @@ import 'package:we_repkg/constants/keys.dart';
 import 'package:we_repkg/models/wallpaper.dart';
 import 'package:we_repkg/provider/wallpaper.dart';
 import 'package:we_repkg/utils/storage.dart';
+import 'package:we_repkg/widgets/circular_progress.dart';
 
 import 'wallpaper_checkbox.dart';
 
@@ -70,6 +71,7 @@ class _ImageViewState extends ConsumerState<ImageView> {
   @override
   Widget build(BuildContext context) {
     return Material(
+      key: Key(widget.wallpaper.id),
       child: Listener(
         onPointerDown: onPointerDown,
         child: InkWell(
@@ -80,6 +82,7 @@ class _ImageViewState extends ConsumerState<ImageView> {
             debugPrint(widget.wallpaper.toString());
           },
           child: MouseRegion(
+            cursor: SystemMouseCursors.click,
             onHover: (e) => ref
                 .read(hoverWallpaperProvider.notifier)
                 .update(widget.wallpaper),
@@ -126,10 +129,16 @@ class _ImageViewState extends ConsumerState<ImageView> {
                                 child: frame != null
                                     ? child
                                     : const Center(
-                                        child: CircularProgressIndicator(),
+                                        child: EasyCircularProgress(),
                                       ),
                               );
                             },
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            color: Colors.grey[300],
+                            child: const Icon(Icons.broken_image, size: 48),
+                          );
+                        },
                       ),
                     ),
                   ),

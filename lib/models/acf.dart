@@ -1,7 +1,7 @@
 class AcfInfo {
-  String id;
-  int size;
-  int time;
+  final String id;
+  final int size;
+  final int time;
 
   AcfInfo({required this.id, required this.size, required this.time});
 

@@ -23,11 +23,12 @@ class SettingCheckbox extends StatelessWidget {
         Checkbox(
           value: value,
           onChanged: onChanged,
+          mouseCursor: SystemMouseCursors.click,
           side: BorderSide(width: 2, color: Colors.grey),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
           fillColor: WidgetStateProperty.resolveWith(
             (states) => states.contains(WidgetState.selected)
-                ? Colors.blue
+                ? Theme.of(context).primaryColor
                 : Colors.transparent,
           ),
         ),

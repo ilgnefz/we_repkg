@@ -6,6 +6,7 @@ import 'package:we_repkg/config/custom_theme.dart';
 import 'package:we_repkg/constants/i10n.dart';
 import 'package:we_repkg/models/enums.dart';
 import 'package:we_repkg/provider/system.dart';
+import 'package:we_repkg/widgets/sliding_switch.dart';
 
 class ThemeSwitch extends ConsumerWidget {
   const ThemeSwitch({super.key});
@@ -19,9 +20,8 @@ class ThemeSwitch extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(tr(AppI10n.settingSystemTheme)),
-        CustomSlidingSegmentedControl<int>(
-          height: 32,
-          initialValue: type.index + 1,
+        SlidingSwitch(
+          initialValue: type.index,
           children: {
             1: Text(
               ThemeType.values[0].label,
@@ -36,16 +36,6 @@ class ThemeSwitch extends ConsumerWidget {
               style: theme.textTheme.bodySmall,
             ),
           },
-          decoration: BoxDecoration(
-            color: theme.extension<SlidingSegmentedTheme>()!.backgroundColor,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          thumbDecoration: BoxDecoration(
-            color: theme.extension<SlidingSegmentedTheme>()!.foregroundColor,
-            borderRadius: BorderRadius.circular(6),
-          ),
-          duration: Duration(milliseconds: 300),
-          curve: Curves.easeInToLinear,
           onValueChanged: (v) => ref
               .read(currentThemeProvider.notifier)
               .update(ThemeType.values[v - 1]),

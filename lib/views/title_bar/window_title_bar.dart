@@ -26,7 +26,6 @@ class WindowTitleBar extends StatelessWidget {
             ),
             Spacer(),
             SettingBtn(),
-            SizedBox(width: 8),
             WindowBtnGroup(),
           ],
         ),

@@ -37,12 +37,13 @@ class _ContentViewState extends ConsumerState<ContentView> {
       child: GridView.builder(
         shrinkWrap: true,
         itemCount: list.length,
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
           crossAxisSpacing: 8,
           mainAxisSpacing: 8,
           maxCrossAxisExtent: width,
         ),
+        cacheExtent: 500,
         itemBuilder: (context, index) =>
             ImageView(width: width, index: index, wallpaper: list[index]),
       ),

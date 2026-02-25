@@ -22,6 +22,7 @@ class _LinkTextState extends State<LinkText> {
       child: InkWell(
         onTap: () async => await launchUrl(Uri.parse(widget.uri)),
         hoverColor: Colors.transparent,
+        mouseCursor: SystemMouseCursors.click,
         child: Text(
           widget.label,
           style: TextStyle(

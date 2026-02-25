@@ -6,123 +6,360 @@ part of 'wallpaper.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(WallpaperList)
+final wallpaperListProvider = WallpaperListProvider._();
+
+final class WallpaperListProvider
+    extends $NotifierProvider<WallpaperList, List<WallpaperInfo>> {
+  WallpaperListProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'wallpaperListProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$wallpaperListHash();
+
+  @$internal
+  @override
+  WallpaperList create() => WallpaperList();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(List<WallpaperInfo> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<List<WallpaperInfo>>(value),
+    );
+  }
+}
+
+String _$wallpaperListHash() => r'3bd23ce59e11396976fe56a33a5d0f02d0956623';
+
+abstract class _$WallpaperList extends $Notifier<List<WallpaperInfo>> {
+  List<WallpaperInfo> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<List<WallpaperInfo>, List<WallpaperInfo>>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<List<WallpaperInfo>, List<WallpaperInfo>>,
+              List<WallpaperInfo>,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}
+
+@ProviderFor(HoverWallpaper)
+final hoverWallpaperProvider = HoverWallpaperProvider._();
+
+final class HoverWallpaperProvider
+    extends $NotifierProvider<HoverWallpaper, WallpaperInfo?> {
+  HoverWallpaperProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'hoverWallpaperProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$hoverWallpaperHash();
+
+  @$internal
+  @override
+  HoverWallpaper create() => HoverWallpaper();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(WallpaperInfo? value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<WallpaperInfo?>(value),
+    );
+  }
+}
+
+String _$hoverWallpaperHash() => r'ec6d7d8ce6e8957479f6824fdd4e622aa573c706';
+
+abstract class _$HoverWallpaper extends $Notifier<WallpaperInfo?> {
+  WallpaperInfo? build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<WallpaperInfo?, WallpaperInfo?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<WallpaperInfo?, WallpaperInfo?>,
+              WallpaperInfo?,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}
+
+@ProviderFor(SelectedWallpaper)
+final selectedWallpaperProvider = SelectedWallpaperProvider._();
+
+final class SelectedWallpaperProvider
+    extends $NotifierProvider<SelectedWallpaper, WallpaperInfo?> {
+  SelectedWallpaperProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'selectedWallpaperProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$selectedWallpaperHash();
+
+  @$internal
+  @override
+  SelectedWallpaper create() => SelectedWallpaper();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(WallpaperInfo? value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<WallpaperInfo?>(value),
+    );
+  }
+}
+
+String _$selectedWallpaperHash() => r'e5f054d0317ea932a91e379223512b79ed614963';
+
+abstract class _$SelectedWallpaper extends $Notifier<WallpaperInfo?> {
+  WallpaperInfo? build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<WallpaperInfo?, WallpaperInfo?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<WallpaperInfo?, WallpaperInfo?>,
+              WallpaperInfo?,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}
+
+@ProviderFor(checkedWallpaperList)
+final checkedWallpaperListProvider = CheckedWallpaperListProvider._();
+
+final class CheckedWallpaperListProvider
+    extends
+        $FunctionalProvider<
+          List<WallpaperInfo>,
+          List<WallpaperInfo>,
+          List<WallpaperInfo>
+        >
+    with $Provider<List<WallpaperInfo>> {
+  CheckedWallpaperListProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'checkedWallpaperListProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$checkedWallpaperListHash();
+
+  @$internal
+  @override
+  $ProviderElement<List<WallpaperInfo>> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  List<WallpaperInfo> create(Ref ref) {
+    return checkedWallpaperList(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(List<WallpaperInfo> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<List<WallpaperInfo>>(value),
+    );
+  }
+}
+
 String _$checkedWallpaperListHash() =>
     r'4c7bf098f7f0aed51024ef02b829de1f0f3bcfbd';
 
-/// See also [checkedWallpaperList].
-@ProviderFor(checkedWallpaperList)
-final checkedWallpaperListProvider =
-    AutoDisposeProvider<List<WallpaperInfo>>.internal(
-      checkedWallpaperList,
-      name: r'checkedWallpaperListProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$checkedWallpaperListHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef CheckedWallpaperListRef = AutoDisposeProviderRef<List<WallpaperInfo>>;
-String _$filterWallpaperListHash() =>
-    r'4f749d966bdb518c89586ef6048477a01c5d6b9d';
-
-/// See also [filterWallpaperList].
 @ProviderFor(filterWallpaperList)
-final filterWallpaperListProvider =
-    AutoDisposeProvider<List<WallpaperInfo>>.internal(
-      filterWallpaperList,
-      name: r'filterWallpaperListProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$filterWallpaperListHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
+final filterWallpaperListProvider = FilterWallpaperListProvider._();
+
+final class FilterWallpaperListProvider
+    extends
+        $FunctionalProvider<
+          List<WallpaperInfo>,
+          List<WallpaperInfo>,
+          List<WallpaperInfo>
+        >
+    with $Provider<List<WallpaperInfo>> {
+  FilterWallpaperListProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'filterWallpaperListProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$filterWallpaperListHash();
+
+  @$internal
+  @override
+  $ProviderElement<List<WallpaperInfo>> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  List<WallpaperInfo> create(Ref ref) {
+    return filterWallpaperList(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(List<WallpaperInfo> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<List<WallpaperInfo>>(value),
     );
+  }
+}
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef FilterWallpaperListRef = AutoDisposeProviderRef<List<WallpaperInfo>>;
-String _$wallpaperListHash() => r'e18c117c9ffc550cd6d32316a6007e3d7b6c2248';
+String _$filterWallpaperListHash() =>
+    r'59bdc449246056d5536d7a3d08c728b009cc435c';
 
-/// See also [WallpaperList].
-@ProviderFor(WallpaperList)
-final wallpaperListProvider =
-    AutoDisposeNotifierProvider<WallpaperList, List<WallpaperInfo>>.internal(
-      WallpaperList.new,
-      name: r'wallpaperListProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$wallpaperListHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
+@ProviderFor(ExtractList)
+final extractListProvider = ExtractListProvider._();
+
+final class ExtractListProvider
+    extends $NotifierProvider<ExtractList, List<WallpaperInfo>> {
+  ExtractListProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'extractListProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$extractListHash();
+
+  @$internal
+  @override
+  ExtractList create() => ExtractList();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(List<WallpaperInfo> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<List<WallpaperInfo>>(value),
     );
+  }
+}
 
-typedef _$WallpaperList = AutoDisposeNotifier<List<WallpaperInfo>>;
-String _$hoverWallpaperHash() => r'ec6d7d8ce6e8957479f6824fdd4e622aa573c706';
-
-/// See also [HoverWallpaper].
-@ProviderFor(HoverWallpaper)
-final hoverWallpaperProvider =
-    AutoDisposeNotifierProvider<HoverWallpaper, WallpaperInfo?>.internal(
-      HoverWallpaper.new,
-      name: r'hoverWallpaperProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$hoverWallpaperHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-typedef _$HoverWallpaper = AutoDisposeNotifier<WallpaperInfo?>;
-String _$selectedWallpaperHash() => r'e5f054d0317ea932a91e379223512b79ed614963';
-
-/// See also [SelectedWallpaper].
-@ProviderFor(SelectedWallpaper)
-final selectedWallpaperProvider =
-    AutoDisposeNotifierProvider<SelectedWallpaper, WallpaperInfo?>.internal(
-      SelectedWallpaper.new,
-      name: r'selectedWallpaperProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$selectedWallpaperHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-typedef _$SelectedWallpaper = AutoDisposeNotifier<WallpaperInfo?>;
 String _$extractListHash() => r'6f9c280eb764d277a11262a04ed22e47d0903f5c';
 
-/// See also [ExtractList].
-@ProviderFor(ExtractList)
-final extractListProvider =
-    AutoDisposeNotifierProvider<ExtractList, List<WallpaperInfo>>.internal(
-      ExtractList.new,
-      name: r'extractListProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$extractListHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+abstract class _$ExtractList extends $Notifier<List<WallpaperInfo>> {
+  List<WallpaperInfo> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<List<WallpaperInfo>, List<WallpaperInfo>>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<List<WallpaperInfo>, List<WallpaperInfo>>,
+              List<WallpaperInfo>,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}
 
-typedef _$ExtractList = AutoDisposeNotifier<List<WallpaperInfo>>;
+@ProviderFor(CurrentIndex)
+final currentIndexProvider = CurrentIndexProvider._();
+
+final class CurrentIndexProvider extends $NotifierProvider<CurrentIndex, int> {
+  CurrentIndexProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'currentIndexProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$currentIndexHash();
+
+  @$internal
+  @override
+  CurrentIndex create() => CurrentIndex();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(int value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<int>(value),
+    );
+  }
+}
+
 String _$currentIndexHash() => r'09603265b70d94fae5a5848728798f7955e3b522';
 
-/// See also [CurrentIndex].
-@ProviderFor(CurrentIndex)
-final currentIndexProvider =
-    AutoDisposeNotifierProvider<CurrentIndex, int>.internal(
-      CurrentIndex.new,
-      name: r'currentIndexProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$currentIndexHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-typedef _$CurrentIndex = AutoDisposeNotifier<int>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+abstract class _$CurrentIndex extends $Notifier<int> {
+  int build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<int, int>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<int, int>,
+              int,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}

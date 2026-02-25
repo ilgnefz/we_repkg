@@ -8,6 +8,9 @@ class SettingBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClickIcon(
+      width: 40,
+      height: 32,
+      icon: Icons.settings_outlined,
       onTap: () {
         showDialog(
           context: context,
@@ -15,7 +18,6 @@ class SettingBtn extends StatelessWidget {
           barrierColor: Colors.black.withValues(alpha: .6),
         );
       },
-      icon: Icons.settings_outlined,
     );
   }
 }

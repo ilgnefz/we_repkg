@@ -22,6 +22,7 @@ class FunctionSelectedBtn extends ConsumerWidget {
                 (e) => PopupMenuItem(
                   value: e,
                   height: 40,
+                  mouseCursor: SystemMouseCursors.click,
                   child: Builder(
                     builder: (context) {
                       bool selected =

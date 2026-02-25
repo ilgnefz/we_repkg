@@ -12,35 +12,37 @@ class WallpaperCheckbox extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     bool isSelected =
         ref.watch(hoverWallpaperProvider) == wallpaper || wallpaper.checked;
+    final Color primaryColor = Theme.of(context).primaryColor;
     return AnimatedSwitcher(
-      duration: const Duration(milliseconds: 300), // 动画总时长
+      duration: const Duration(milliseconds: 300),
       transitionBuilder: (child, animation) {
         return FadeTransition(opacity: animation, child: child);
       },
       child: isSelected
           ? Align(
-              key: const Key('checkbox-visible'), // 关键帧标识
+              key: const Key('checkboxVisible'),
               alignment: Alignment.topRight,
               child: AnimatedOpacity(
                 duration: const Duration(milliseconds: 200),
                 opacity: isSelected ? 1 : 0,
                 child: Checkbox(
                   value: wallpaper.checked,
+                  mouseCursor: SystemMouseCursors.click,
                   fillColor: WidgetStateProperty.resolveWith((states) {
                     if (states.contains(WidgetState.selected)) {
-                      return Colors.lightBlue;
+                      return primaryColor;
                     }
                     return Colors.white;
                   }),
                   checkColor: Colors.white,
-                  side: const BorderSide(color: Colors.lightBlue),
+                  side: BorderSide(color: primaryColor),
                   onChanged: (v) => ref
                       .read(wallpaperListProvider.notifier)
                       .toggleChecked(wallpaper),
                 ),
               ),
             )
-          : const SizedBox.shrink(key: Key('checkbox-hidden')), // 隐藏时空容器
+          : const SizedBox.shrink(key: Key('checkboxHidden')),
     );
   }
 }
