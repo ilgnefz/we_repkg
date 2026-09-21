@@ -47,7 +47,7 @@ abstract class _$FilterState extends $Notifier<WallpaperFilter> {
   WallpaperFilter build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<WallpaperFilter, WallpaperFilter>;
     final element =
         ref.element
@@ -57,6 +57,6 @@ abstract class _$FilterState extends $Notifier<WallpaperFilter> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

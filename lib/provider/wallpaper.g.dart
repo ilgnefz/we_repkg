@@ -47,7 +47,7 @@ abstract class _$WallpaperList extends $Notifier<List<WallpaperInfo>> {
   List<WallpaperInfo> build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<List<WallpaperInfo>, List<WallpaperInfo>>;
     final element =
         ref.element
@@ -57,7 +57,7 @@ abstract class _$WallpaperList extends $Notifier<List<WallpaperInfo>> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }
 
@@ -99,7 +99,7 @@ abstract class _$HoverWallpaper extends $Notifier<WallpaperInfo?> {
   WallpaperInfo? build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<WallpaperInfo?, WallpaperInfo?>;
     final element =
         ref.element
@@ -109,7 +109,7 @@ abstract class _$HoverWallpaper extends $Notifier<WallpaperInfo?> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }
 
@@ -151,7 +151,7 @@ abstract class _$SelectedWallpaper extends $Notifier<WallpaperInfo?> {
   WallpaperInfo? build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<WallpaperInfo?, WallpaperInfo?>;
     final element =
         ref.element
@@ -161,7 +161,7 @@ abstract class _$SelectedWallpaper extends $Notifier<WallpaperInfo?> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }
 
@@ -299,7 +299,7 @@ abstract class _$ExtractList extends $Notifier<List<WallpaperInfo>> {
   List<WallpaperInfo> build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<List<WallpaperInfo>, List<WallpaperInfo>>;
     final element =
         ref.element
@@ -309,7 +309,7 @@ abstract class _$ExtractList extends $Notifier<List<WallpaperInfo>> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }
 
@@ -350,7 +350,7 @@ abstract class _$CurrentIndex extends $Notifier<int> {
   int build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<int, int>;
     final element =
         ref.element
@@ -360,6 +360,6 @@ abstract class _$CurrentIndex extends $Notifier<int> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }
